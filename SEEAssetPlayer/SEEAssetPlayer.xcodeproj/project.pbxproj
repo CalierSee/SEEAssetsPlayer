@@ -1,0 +1,729 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		080E317A2081957C008905C7 /* SEEResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */; };
+		080E317D2081995A008905C7 /* SEEDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 080E317C2081995A008905C7 /* SEEDownloader.m */; };
+		081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 081F8E8020A29D45003A652E /* SEEDataManager.m */; };
+		087E8D60208190BA00F67EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D5F208190BA00F67EB5 /* AppDelegate.m */; };
+		087E8D63208190BA00F67EB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D62208190BA00F67EB5 /* ViewController.m */; };
+		087E8D66208190BA00F67EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 087E8D64208190BA00F67EB5 /* Main.storyboard */; };
+		087E8D68208190BA00F67EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 087E8D67208190BA00F67EB5 /* Assets.xcassets */; };
+		087E8D6B208190BA00F67EB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 087E8D69208190BA00F67EB5 /* LaunchScreen.storyboard */; };
+		087E8D6E208190BA00F67EB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D6D208190BA00F67EB5 /* main.m */; };
+		087E8D78208190BA00F67EB5 /* SEEAssetPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D77208190BA00F67EB5 /* SEEAssetPlayerTests.m */; };
+		087E8D83208190BA00F67EB5 /* SEEAssetPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D82208190BA00F67EB5 /* SEEAssetPlayerUITests.m */; };
+		087E8D922081913B00F67EB5 /* SEEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D912081913B00F67EB5 /* SEEPlayer.m */; };
+		08A2917820A181FB004607D1 /* SEEPlayer+UISupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917720A181FB004607D1 /* SEEPlayer+UISupport.m */; };
+		08A2917B20A1825B004607D1 /* SEEPlayerToolsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */; };
+		08A2917D20A18289004607D1 /* SEEPlayerToolsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */; };
+		08A2918020A1A85E004607D1 /* SEEFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917F20A1A85E004607D1 /* SEEFileInfo.m */; };
+		08C100FE20AAD582009E5F66 /* SViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C100FD20AAD582009E5F66 /* SViewController.m */; };
+		08C1010120AAD6AC009E5F66 /* NSObject+Dealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C1010020AAD6AC009E5F66 /* NSObject+Dealloc.m */; };
+		3F27925ABB60494F143C3F58 /* libPods-SEEAssetPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 211D087F20FAFC02C2C8D9A1 /* libPods-SEEAssetPlayer.a */; };
+		6EB06BC23E4D43C30A53D0D0 /* libPods-SEEAssetPlayerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 123781A6742E061EAFD483E6 /* libPods-SEEAssetPlayerUITests.a */; };
+		957071894A8F303D111DC1E6 /* libPods-SEEAssetPlayerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AE6F7BDB3A82D82A0BD6CA /* libPods-SEEAssetPlayerTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		087E8D74208190BA00F67EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 087E8D53208190BA00F67EB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 087E8D5A208190BA00F67EB5;
+			remoteInfo = SEEAssetPlayer;
+		};
+		087E8D7F208190BA00F67EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 087E8D53208190BA00F67EB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 087E8D5A208190BA00F67EB5;
+			remoteInfo = SEEAssetPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03AE6F7BDB3A82D82A0BD6CA /* libPods-SEEAssetPlayerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SEEAssetPlayerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		080E31782081957C008905C7 /* SEEResourceLoaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEResourceLoaderDelegate.h; sourceTree = "<group>"; };
+		080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEResourceLoaderDelegate.m; sourceTree = "<group>"; };
+		080E317B2081995A008905C7 /* SEEDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEDownloader.h; sourceTree = "<group>"; };
+		080E317C2081995A008905C7 /* SEEDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEDownloader.m; sourceTree = "<group>"; };
+		080E317E20843D91008905C7 /* SEEPlayerMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerMacro.h; sourceTree = "<group>"; };
+		081F8E7F20A29D45003A652E /* SEEDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEDataManager.h; sourceTree = "<group>"; };
+		081F8E8020A29D45003A652E /* SEEDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEDataManager.m; sourceTree = "<group>"; };
+		087E8D5B208190BA00F67EB5 /* SEEAssetPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEEAssetPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		087E8D5E208190BA00F67EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		087E8D5F208190BA00F67EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		087E8D61208190BA00F67EB5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		087E8D62208190BA00F67EB5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		087E8D65208190BA00F67EB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		087E8D67208190BA00F67EB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		087E8D6A208190BA00F67EB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		087E8D6C208190BA00F67EB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		087E8D6D208190BA00F67EB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		087E8D73208190BA00F67EB5 /* SEEAssetPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SEEAssetPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		087E8D77208190BA00F67EB5 /* SEEAssetPlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEAssetPlayerTests.m; sourceTree = "<group>"; };
+		087E8D79208190BA00F67EB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		087E8D7E208190BA00F67EB5 /* SEEAssetPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SEEAssetPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		087E8D82208190BA00F67EB5 /* SEEAssetPlayerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEAssetPlayerUITests.m; sourceTree = "<group>"; };
+		087E8D84208190BA00F67EB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		087E8D902081913B00F67EB5 /* SEEPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayer.h; sourceTree = "<group>"; };
+		087E8D912081913B00F67EB5 /* SEEPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayer.m; sourceTree = "<group>"; };
+		08A2917620A181FB004607D1 /* SEEPlayer+UISupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SEEPlayer+UISupport.h"; sourceTree = "<group>"; };
+		08A2917720A181FB004607D1 /* SEEPlayer+UISupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SEEPlayer+UISupport.m"; sourceTree = "<group>"; };
+		08A2917920A1825B004607D1 /* SEEPlayerToolsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerToolsView.h; sourceTree = "<group>"; };
+		08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerToolsView.m; sourceTree = "<group>"; };
+		08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEEPlayerToolsView.xib; sourceTree = "<group>"; };
+		08A2917E20A1A85E004607D1 /* SEEFileInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEFileInfo.h; sourceTree = "<group>"; };
+		08A2917F20A1A85E004607D1 /* SEEFileInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEFileInfo.m; sourceTree = "<group>"; };
+		08C100FC20AAD582009E5F66 /* SViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SViewController.h; sourceTree = "<group>"; };
+		08C100FD20AAD582009E5F66 /* SViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SViewController.m; sourceTree = "<group>"; };
+		08C100FF20AAD6AC009E5F66 /* NSObject+Dealloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Dealloc.h"; sourceTree = "<group>"; };
+		08C1010020AAD6AC009E5F66 /* NSObject+Dealloc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Dealloc.m"; sourceTree = "<group>"; };
+		0D33008FA1B59C20D9F027A8 /* Pods-SEEAssetPlayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SEEAssetPlayerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SEEAssetPlayerTests/Pods-SEEAssetPlayerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		123781A6742E061EAFD483E6 /* libPods-SEEAssetPlayerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SEEAssetPlayerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211D087F20FAFC02C2C8D9A1 /* libPods-SEEAssetPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SEEAssetPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		372C29B8FC3ADA76EAC774C5 /* Pods-SEEAssetPlayerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SEEAssetPlayerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SEEAssetPlayerUITests/Pods-SEEAssetPlayerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AB47FF872CD9C13122CF166A /* Pods-SEEAssetPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SEEAssetPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SEEAssetPlayer/Pods-SEEAssetPlayer.debug.xcconfig"; sourceTree = "<group>"; };
+		AF37853E08DAC19C653DCF11 /* Pods-SEEAssetPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SEEAssetPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SEEAssetPlayer/Pods-SEEAssetPlayer.release.xcconfig"; sourceTree = "<group>"; };
+		D3F11FDAC9F4F7D81CBBA4BF /* Pods-SEEAssetPlayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SEEAssetPlayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SEEAssetPlayerUITests/Pods-SEEAssetPlayerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FBFA4EF90E7B15C421D85819 /* Pods-SEEAssetPlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SEEAssetPlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SEEAssetPlayerTests/Pods-SEEAssetPlayerTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		087E8D58208190BA00F67EB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F27925ABB60494F143C3F58 /* libPods-SEEAssetPlayer.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		087E8D70208190BA00F67EB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				957071894A8F303D111DC1E6 /* libPods-SEEAssetPlayerTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		087E8D7B208190BA00F67EB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EB06BC23E4D43C30A53D0D0 /* libPods-SEEAssetPlayerUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		087E8D52208190BA00F67EB5 = {
+			isa = PBXGroup;
+			children = (
+				087E8D5D208190BA00F67EB5 /* SEEAssetPlayer */,
+				087E8D76208190BA00F67EB5 /* SEEAssetPlayerTests */,
+				087E8D81208190BA00F67EB5 /* SEEAssetPlayerUITests */,
+				087E8D5C208190BA00F67EB5 /* Products */,
+				B522832DD392961A16A41CEE /* Pods */,
+				C324AAC3594E8448D68E39E2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		087E8D5C208190BA00F67EB5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				087E8D5B208190BA00F67EB5 /* SEEAssetPlayer.app */,
+				087E8D73208190BA00F67EB5 /* SEEAssetPlayerTests.xctest */,
+				087E8D7E208190BA00F67EB5 /* SEEAssetPlayerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		087E8D5D208190BA00F67EB5 /* SEEAssetPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				087E8D5E208190BA00F67EB5 /* AppDelegate.h */,
+				087E8D5F208190BA00F67EB5 /* AppDelegate.m */,
+				08C100FF20AAD6AC009E5F66 /* NSObject+Dealloc.h */,
+				08C1010020AAD6AC009E5F66 /* NSObject+Dealloc.m */,
+				087E8D61208190BA00F67EB5 /* ViewController.h */,
+				087E8D62208190BA00F67EB5 /* ViewController.m */,
+				08C100FC20AAD582009E5F66 /* SViewController.h */,
+				08C100FD20AAD582009E5F66 /* SViewController.m */,
+				087E8D902081913B00F67EB5 /* SEEPlayer.h */,
+				087E8D912081913B00F67EB5 /* SEEPlayer.m */,
+				08A2917620A181FB004607D1 /* SEEPlayer+UISupport.h */,
+				08A2917720A181FB004607D1 /* SEEPlayer+UISupport.m */,
+				08A2917920A1825B004607D1 /* SEEPlayerToolsView.h */,
+				08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */,
+				08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */,
+				080E31782081957C008905C7 /* SEEResourceLoaderDelegate.h */,
+				080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */,
+				081F8E7F20A29D45003A652E /* SEEDataManager.h */,
+				081F8E8020A29D45003A652E /* SEEDataManager.m */,
+				080E317B2081995A008905C7 /* SEEDownloader.h */,
+				080E317C2081995A008905C7 /* SEEDownloader.m */,
+				08A2917E20A1A85E004607D1 /* SEEFileInfo.h */,
+				08A2917F20A1A85E004607D1 /* SEEFileInfo.m */,
+				080E317E20843D91008905C7 /* SEEPlayerMacro.h */,
+				087E8D64208190BA00F67EB5 /* Main.storyboard */,
+				087E8D67208190BA00F67EB5 /* Assets.xcassets */,
+				087E8D69208190BA00F67EB5 /* LaunchScreen.storyboard */,
+				087E8D6C208190BA00F67EB5 /* Info.plist */,
+				087E8D6D208190BA00F67EB5 /* main.m */,
+			);
+			path = SEEAssetPlayer;
+			sourceTree = "<group>";
+		};
+		087E8D76208190BA00F67EB5 /* SEEAssetPlayerTests */ = {
+			isa = PBXGroup;
+			children = (
+				087E8D77208190BA00F67EB5 /* SEEAssetPlayerTests.m */,
+				087E8D79208190BA00F67EB5 /* Info.plist */,
+			);
+			path = SEEAssetPlayerTests;
+			sourceTree = "<group>";
+		};
+		087E8D81208190BA00F67EB5 /* SEEAssetPlayerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				087E8D82208190BA00F67EB5 /* SEEAssetPlayerUITests.m */,
+				087E8D84208190BA00F67EB5 /* Info.plist */,
+			);
+			path = SEEAssetPlayerUITests;
+			sourceTree = "<group>";
+		};
+		B522832DD392961A16A41CEE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AB47FF872CD9C13122CF166A /* Pods-SEEAssetPlayer.debug.xcconfig */,
+				AF37853E08DAC19C653DCF11 /* Pods-SEEAssetPlayer.release.xcconfig */,
+				0D33008FA1B59C20D9F027A8 /* Pods-SEEAssetPlayerTests.debug.xcconfig */,
+				FBFA4EF90E7B15C421D85819 /* Pods-SEEAssetPlayerTests.release.xcconfig */,
+				372C29B8FC3ADA76EAC774C5 /* Pods-SEEAssetPlayerUITests.debug.xcconfig */,
+				D3F11FDAC9F4F7D81CBBA4BF /* Pods-SEEAssetPlayerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C324AAC3594E8448D68E39E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				211D087F20FAFC02C2C8D9A1 /* libPods-SEEAssetPlayer.a */,
+				03AE6F7BDB3A82D82A0BD6CA /* libPods-SEEAssetPlayerTests.a */,
+				123781A6742E061EAFD483E6 /* libPods-SEEAssetPlayerUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		087E8D5A208190BA00F67EB5 /* SEEAssetPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 087E8D87208190BA00F67EB5 /* Build configuration list for PBXNativeTarget "SEEAssetPlayer" */;
+			buildPhases = (
+				784E3F6FE88E603C20A3A0E2 /* [CP] Check Pods Manifest.lock */,
+				087E8D57208190BA00F67EB5 /* Sources */,
+				087E8D58208190BA00F67EB5 /* Frameworks */,
+				087E8D59208190BA00F67EB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SEEAssetPlayer;
+			productName = SEEAssetPlayer;
+			productReference = 087E8D5B208190BA00F67EB5 /* SEEAssetPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		087E8D72208190BA00F67EB5 /* SEEAssetPlayerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 087E8D8A208190BA00F67EB5 /* Build configuration list for PBXNativeTarget "SEEAssetPlayerTests" */;
+			buildPhases = (
+				B23507AC6543386FE4E4B7B7 /* [CP] Check Pods Manifest.lock */,
+				087E8D6F208190BA00F67EB5 /* Sources */,
+				087E8D70208190BA00F67EB5 /* Frameworks */,
+				087E8D71208190BA00F67EB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				087E8D75208190BA00F67EB5 /* PBXTargetDependency */,
+			);
+			name = SEEAssetPlayerTests;
+			productName = SEEAssetPlayerTests;
+			productReference = 087E8D73208190BA00F67EB5 /* SEEAssetPlayerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		087E8D7D208190BA00F67EB5 /* SEEAssetPlayerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 087E8D8D208190BA00F67EB5 /* Build configuration list for PBXNativeTarget "SEEAssetPlayerUITests" */;
+			buildPhases = (
+				1D659D65C6EFFECC06F5311B /* [CP] Check Pods Manifest.lock */,
+				087E8D7A208190BA00F67EB5 /* Sources */,
+				087E8D7B208190BA00F67EB5 /* Frameworks */,
+				087E8D7C208190BA00F67EB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				087E8D80208190BA00F67EB5 /* PBXTargetDependency */,
+			);
+			name = SEEAssetPlayerUITests;
+			productName = SEEAssetPlayerUITests;
+			productReference = 087E8D7E208190BA00F67EB5 /* SEEAssetPlayerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		087E8D53208190BA00F67EB5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "景彦铭";
+				TargetAttributes = {
+					087E8D5A208190BA00F67EB5 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+					087E8D72208190BA00F67EB5 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 087E8D5A208190BA00F67EB5;
+					};
+					087E8D7D208190BA00F67EB5 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 087E8D5A208190BA00F67EB5;
+					};
+				};
+			};
+			buildConfigurationList = 087E8D56208190BA00F67EB5 /* Build configuration list for PBXProject "SEEAssetPlayer" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 087E8D52208190BA00F67EB5;
+			productRefGroup = 087E8D5C208190BA00F67EB5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				087E8D5A208190BA00F67EB5 /* SEEAssetPlayer */,
+				087E8D72208190BA00F67EB5 /* SEEAssetPlayerTests */,
+				087E8D7D208190BA00F67EB5 /* SEEAssetPlayerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		087E8D59208190BA00F67EB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				087E8D6B208190BA00F67EB5 /* LaunchScreen.storyboard in Resources */,
+				08A2917D20A18289004607D1 /* SEEPlayerToolsView.xib in Resources */,
+				087E8D68208190BA00F67EB5 /* Assets.xcassets in Resources */,
+				087E8D66208190BA00F67EB5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		087E8D71208190BA00F67EB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		087E8D7C208190BA00F67EB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D659D65C6EFFECC06F5311B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SEEAssetPlayerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		784E3F6FE88E603C20A3A0E2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SEEAssetPlayer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B23507AC6543386FE4E4B7B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SEEAssetPlayerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		087E8D57208190BA00F67EB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08A2917820A181FB004607D1 /* SEEPlayer+UISupport.m in Sources */,
+				087E8D922081913B00F67EB5 /* SEEPlayer.m in Sources */,
+				08C100FE20AAD582009E5F66 /* SViewController.m in Sources */,
+				087E8D63208190BA00F67EB5 /* ViewController.m in Sources */,
+				087E8D6E208190BA00F67EB5 /* main.m in Sources */,
+				087E8D60208190BA00F67EB5 /* AppDelegate.m in Sources */,
+				08A2917B20A1825B004607D1 /* SEEPlayerToolsView.m in Sources */,
+				081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */,
+				08C1010120AAD6AC009E5F66 /* NSObject+Dealloc.m in Sources */,
+				080E317A2081957C008905C7 /* SEEResourceLoaderDelegate.m in Sources */,
+				080E317D2081995A008905C7 /* SEEDownloader.m in Sources */,
+				08A2918020A1A85E004607D1 /* SEEFileInfo.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		087E8D6F208190BA00F67EB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				087E8D78208190BA00F67EB5 /* SEEAssetPlayerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		087E8D7A208190BA00F67EB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				087E8D83208190BA00F67EB5 /* SEEAssetPlayerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		087E8D75208190BA00F67EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 087E8D5A208190BA00F67EB5 /* SEEAssetPlayer */;
+			targetProxy = 087E8D74208190BA00F67EB5 /* PBXContainerItemProxy */;
+		};
+		087E8D80208190BA00F67EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 087E8D5A208190BA00F67EB5 /* SEEAssetPlayer */;
+			targetProxy = 087E8D7F208190BA00F67EB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		087E8D64208190BA00F67EB5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				087E8D65208190BA00F67EB5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		087E8D69208190BA00F67EB5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				087E8D6A208190BA00F67EB5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		087E8D85208190BA00F67EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		087E8D86208190BA00F67EB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		087E8D88208190BA00F67EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB47FF872CD9C13122CF166A /* Pods-SEEAssetPlayer.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 36BB695Z56;
+				INFOPLIST_FILE = SEEAssetPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.see.SEEAssetPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		087E8D89208190BA00F67EB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF37853E08DAC19C653DCF11 /* Pods-SEEAssetPlayer.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 36BB695Z56;
+				INFOPLIST_FILE = SEEAssetPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.see.SEEAssetPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		087E8D8B208190BA00F67EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D33008FA1B59C20D9F027A8 /* Pods-SEEAssetPlayerTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 36BB695Z56;
+				INFOPLIST_FILE = SEEAssetPlayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.see.SEEAssetPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SEEAssetPlayer.app/SEEAssetPlayer";
+			};
+			name = Debug;
+		};
+		087E8D8C208190BA00F67EB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBFA4EF90E7B15C421D85819 /* Pods-SEEAssetPlayerTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 36BB695Z56;
+				INFOPLIST_FILE = SEEAssetPlayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.see.SEEAssetPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SEEAssetPlayer.app/SEEAssetPlayer";
+			};
+			name = Release;
+		};
+		087E8D8E208190BA00F67EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 372C29B8FC3ADA76EAC774C5 /* Pods-SEEAssetPlayerUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 36BB695Z56;
+				INFOPLIST_FILE = SEEAssetPlayerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.see.SEEAssetPlayerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SEEAssetPlayer;
+			};
+			name = Debug;
+		};
+		087E8D8F208190BA00F67EB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3F11FDAC9F4F7D81CBBA4BF /* Pods-SEEAssetPlayerUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 36BB695Z56;
+				INFOPLIST_FILE = SEEAssetPlayerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.see.SEEAssetPlayerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SEEAssetPlayer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		087E8D56208190BA00F67EB5 /* Build configuration list for PBXProject "SEEAssetPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				087E8D85208190BA00F67EB5 /* Debug */,
+				087E8D86208190BA00F67EB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		087E8D87208190BA00F67EB5 /* Build configuration list for PBXNativeTarget "SEEAssetPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				087E8D88208190BA00F67EB5 /* Debug */,
+				087E8D89208190BA00F67EB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		087E8D8A208190BA00F67EB5 /* Build configuration list for PBXNativeTarget "SEEAssetPlayerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				087E8D8B208190BA00F67EB5 /* Debug */,
+				087E8D8C208190BA00F67EB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		087E8D8D208190BA00F67EB5 /* Build configuration list for PBXNativeTarget "SEEAssetPlayerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				087E8D8E208190BA00F67EB5 /* Debug */,
+				087E8D8F208190BA00F67EB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 087E8D53208190BA00F67EB5 /* Project object */;
+}
