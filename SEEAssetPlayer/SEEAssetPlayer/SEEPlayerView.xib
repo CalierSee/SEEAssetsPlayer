@@ -11,12 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="SEEPlayerToolsView">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="SEEPlayerView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIO-11-MM0">
-                    <rect key="frame" x="0.0" y="-44" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FrH-O3-WSz">
                             <rect key="frame" x="10" y="13.5" width="315" height="17"/>
@@ -47,7 +47,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hg-XW-u86">
-                    <rect key="frame" x="0.0" y="192" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="148" width="375" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIC-rQ-qPl">
                             <rect key="frame" x="335" y="7" width="30" height="29"/>
@@ -56,6 +56,9 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.50465539380000002" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="selected" title="小屏"/>
+                            <connections>
+                                <action selector="see_fullScreenAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="LaF-fZ-HPl"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8m-oy-I88">
                             <rect key="frame" x="286" y="13" width="39" height="17"/>
@@ -90,7 +93,7 @@
                             </state>
                             <state key="selected" title="暂停"/>
                             <connections>
-                                <action selector="playOrPauseAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="xCN-ww-YFx"/>
+                                <action selector="see_playOrPauseAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="xCN-ww-YFx"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyl-ik-plW">
@@ -128,10 +131,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxh-hi-JPV">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="104"/>
                     <subviews>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOz-x3-qZ5">
-                            <rect key="frame" x="148" y="80" width="77.5" height="31.5"/>
+                            <rect key="frame" x="148" y="36" width="77.5" height="31.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -159,7 +162,7 @@
                 <constraint firstItem="fxh-hi-JPV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="g3a-h3-TtJ"/>
                 <constraint firstItem="fxh-hi-JPV" firstAttribute="top" secondItem="IIO-11-MM0" secondAttribute="bottom" id="hdM-ka-dYv"/>
                 <constraint firstAttribute="trailing" secondItem="fxh-hi-JPV" secondAttribute="trailing" id="kgw-l9-qPG"/>
-                <constraint firstItem="fxh-hi-JPV" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="w4a-c4-Xiv"/>
+                <constraint firstItem="fxh-hi-JPV" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" constant="-88" id="w4a-c4-Xiv"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -177,12 +180,12 @@
         </view>
         <tapGestureRecognizer id="dWQ-ME-TP9">
             <connections>
-                <action selector="showOrHiddenTools:" destination="iN0-l3-epB" id="yqO-bw-Fwz"/>
+                <action selector="see_showOrHiddenTools" destination="iN0-l3-epB" id="9IP-RM-EaQ"/>
             </connections>
         </tapGestureRecognizer>
         <panGestureRecognizer minimumNumberOfTouches="1" id="Zrf-VJ-MaL">
             <connections>
-                <action selector="panGestureAction:" destination="iN0-l3-epB" id="2B5-jc-hbI"/>
+                <action selector="see_panGestureAction:" destination="iN0-l3-epB" id="2B5-jc-hbI"/>
             </connections>
         </panGestureRecognizer>
     </objects>

@@ -20,8 +20,8 @@
 		087E8D78208190BA00F67EB5 /* SEEAssetPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D77208190BA00F67EB5 /* SEEAssetPlayerTests.m */; };
 		087E8D83208190BA00F67EB5 /* SEEAssetPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D82208190BA00F67EB5 /* SEEAssetPlayerUITests.m */; };
 		087E8D922081913B00F67EB5 /* SEEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D912081913B00F67EB5 /* SEEPlayer.m */; };
-		08A2917B20A1825B004607D1 /* SEEPlayerToolsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */; };
-		08A2917D20A18289004607D1 /* SEEPlayerToolsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */; };
+		08A2917B20A1825B004607D1 /* SEEPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917A20A1825B004607D1 /* SEEPlayerView.m */; };
+		08A2917D20A18289004607D1 /* SEEPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A2917C20A18289004607D1 /* SEEPlayerView.xib */; };
 		08A2918020A1A85E004607D1 /* SEEFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917F20A1A85E004607D1 /* SEEFileInfo.m */; };
 		08C100FE20AAD582009E5F66 /* SViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C100FD20AAD582009E5F66 /* SViewController.m */; };
 		08C1010120AAD6AC009E5F66 /* NSObject+Dealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C1010020AAD6AC009E5F66 /* NSObject+Dealloc.m */; };
@@ -76,9 +76,9 @@
 		087E8D84208190BA00F67EB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		087E8D902081913B00F67EB5 /* SEEPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayer.h; sourceTree = "<group>"; };
 		087E8D912081913B00F67EB5 /* SEEPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayer.m; sourceTree = "<group>"; };
-		08A2917920A1825B004607D1 /* SEEPlayerToolsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerToolsView.h; sourceTree = "<group>"; };
-		08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerToolsView.m; sourceTree = "<group>"; };
-		08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEEPlayerToolsView.xib; sourceTree = "<group>"; };
+		08A2917920A1825B004607D1 /* SEEPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerView.h; sourceTree = "<group>"; };
+		08A2917A20A1825B004607D1 /* SEEPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerView.m; sourceTree = "<group>"; };
+		08A2917C20A18289004607D1 /* SEEPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEEPlayerView.xib; sourceTree = "<group>"; };
 		08A2917E20A1A85E004607D1 /* SEEFileInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEFileInfo.h; sourceTree = "<group>"; };
 		08A2917F20A1A85E004607D1 /* SEEFileInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEFileInfo.m; sourceTree = "<group>"; };
 		08C100FC20AAD582009E5F66 /* SViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SViewController.h; sourceTree = "<group>"; };
@@ -160,9 +160,9 @@
 				087E8D912081913B00F67EB5 /* SEEPlayer.m */,
 				0803EEDF20B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.h */,
 				0803EEE020B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m */,
-				08A2917920A1825B004607D1 /* SEEPlayerToolsView.h */,
-				08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */,
-				08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */,
+				08A2917920A1825B004607D1 /* SEEPlayerView.h */,
+				08A2917A20A1825B004607D1 /* SEEPlayerView.m */,
+				08A2917C20A18289004607D1 /* SEEPlayerView.xib */,
 				080E31782081957C008905C7 /* SEEResourceLoaderDelegate.h */,
 				080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */,
 				081F8E7F20A29D45003A652E /* SEEDataManager.h */,
@@ -332,7 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				087E8D6B208190BA00F67EB5 /* LaunchScreen.storyboard in Resources */,
-				08A2917D20A18289004607D1 /* SEEPlayerToolsView.xib in Resources */,
+				08A2917D20A18289004607D1 /* SEEPlayerView.xib in Resources */,
 				087E8D68208190BA00F67EB5 /* Assets.xcassets in Resources */,
 				087E8D66208190BA00F67EB5 /* Main.storyboard in Resources */,
 			);
@@ -421,7 +421,7 @@
 				087E8D63208190BA00F67EB5 /* ViewController.m in Sources */,
 				087E8D6E208190BA00F67EB5 /* main.m in Sources */,
 				087E8D60208190BA00F67EB5 /* AppDelegate.m in Sources */,
-				08A2917B20A1825B004607D1 /* SEEPlayerToolsView.m in Sources */,
+				08A2917B20A1825B004607D1 /* SEEPlayerView.m in Sources */,
 				0803EEE120B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m in Sources */,
 				081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */,
 				08C1010120AAD6AC009E5F66 /* NSObject+Dealloc.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  SEEPlayerToolsView.m
+//  SEEPlayerView.m
 //  SEEAssetPlayer
 //
 //  Created by 三只鸟 on 2018/5/8.
@@ -7,8 +7,8 @@
 //
 
 
-#import "SEEPlayerToolsView.h"
-
+#import "SEEPlayerView.h"
+#import "SEEPlayer.h"
 extern NSString * const cacheRangesChangeNotification;
 
 @interface SEEPlayerCacheView: UIView
@@ -58,7 +58,7 @@ extern NSString * const cacheRangesChangeNotification;
 @end
 
 
-@interface SEEPlayerToolsView ()
+@interface SEEPlayerView ()
 
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
 
@@ -74,95 +74,126 @@ extern NSString * const cacheRangesChangeNotification;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *showAreaHeightConstaint;
 
+@property (nonatomic, assign) NSTimeInterval hiddenToolsTime;
+
+
 @end
 
-@implementation SEEPlayerToolsView {
-    struct {
-        int playOrPause;
-        int seekToTime;
-        int close;
-    }_responder;
-    
+@implementation SEEPlayerView {
+    SEEPlayer * _player;
     BOOL _stopProgressViewUpdate;
-    
-    NSTimeInterval _duration;
-    
-    NSTimeInterval _currentTime;
+    NSTimeInterval _expectTime;
 }
 
-+ (instancetype)playerToolsView {
++ (instancetype)playerView {
     return [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil].firstObject;
 }
 
-- (void)setDuration:(NSTimeInterval)duration {
-    _duration = duration;
-    self.durationLabel.text = [self see_timeString:duration];
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    _hiddenToolsTime = 10;
+    _player = [[SEEPlayer alloc]init];
+    [self.layer insertSublayer:_player.playerLayer atIndex:0];
+    [_player addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:nil];
+    [_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
+    [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
 }
 
-- (void)setCurrentTime:(NSTimeInterval)time {
-    if (_stopProgressViewUpdate) return;
-    _currentTime = time;
-    self.currentTimeProgressView.value = _currentTime / _duration;
-    [self see_progressChanged:self.currentTimeProgressView];
+- (void)dealloc {
+    [_player removeObserver:self forKeyPath:@"duration"];
+    [_player removeObserver:self forKeyPath:@"currentTime"];
+    [_player removeObserver:self forKeyPath:@"status"];
 }
 
+- (void)layoutSublayersOfLayer:(CALayer *)layer {
+    [super layoutSublayersOfLayer:layer];
+    _player.playerLayer.bounds = layer.bounds;
+    _player.playerLayer.position = layer.position;
+}
 
+- (void)setURL:(NSURL *)url {
+    [_player setURL:url];
+}
 
-- (void)playOrPause:(BOOL)isPlay {
-    self.playOrPauseButton.selected = isPlay;
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"currentTime"]) {
+        if (_stopProgressViewUpdate) return;
+        if (_hiddenToolsTime > 0 && --_hiddenToolsTime == 0) {
+            [self see_showOrHiddenTools];
+        }
+        _expectTime = _player.currentTime;
+        self.currentTimeProgressView.value = _expectTime / _player.duration;
+        [self see_changeCurrentTime];
+    }
+    else if ([keyPath isEqualToString:@"status"]) {
+        switch (_player.status) {
+            case SEEPlayerStatusPlay:
+                self.playOrPauseButton.selected = YES;
+                break;
+                
+            default:
+                self.playOrPauseButton.selected = NO;
+                break;
+        }
+    }
+    else if ([keyPath isEqualToString:@"duration"]) {
+        self.durationLabel.text = [self see_timeString:_player.duration];
+    }
 }
 
 #pragma mark action method
+
+- (IBAction)see_fullScreenAction:(UIButton *)sender {
+
+    
+}
 
 - (IBAction)see_beginSeek:(UISlider *)sender {
     _stopProgressViewUpdate = YES;
 }
 
 - (IBAction)see_seekToTimeAction:(UISlider *)sender {
-    if (_responder.seekToTime) {
-        [_delegate seekToTime:sender.value];
-    }
+    [_player seekToTime:sender.value * _player.duration];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self->_stopProgressViewUpdate = NO;
     });
 }
 
 - (IBAction)see_progressChanged:(UISlider *)sender {
-    NSString * timeString = [self see_timeString:sender.value * _duration];
-    self.currentTimeLabel.text = timeString;
-    self.panGestureCurrentTimeLabel.text = timeString;
+    _expectTime = sender.value * _player.duration;
+    [self see_changeCurrentTime];
 }
 
-
-- (IBAction)panGestureAction:(UIPanGestureRecognizer *)sender {
+- (IBAction)see_panGestureAction:(UIPanGestureRecognizer *)sender {
     switch (sender.state) {
         case UIGestureRecognizerStateBegan:
-            
+
             _panGestureCurrentTimeLabel.hidden = NO;
+            [self see_showTools];
             [self see_beginSeek:self.currentTimeProgressView];
             _panGestureStartPoint = [sender locationInView:sender.view];
-            
+
             break;
         case UIGestureRecognizerStateChanged: {
             CGPoint endPoint = [sender locationInView:sender.view];
-            
+
             CGFloat distance = endPoint.x - _panGestureStartPoint.x;
-            
+
             CGFloat width = self.bounds.size.width;
             //一个屏幕宽度为三分钟 60s * 3m = 180s
-            
+
             NSTimeInterval distanceTime = (distance / width) * 180;
-            
-            _currentTime += distanceTime;
-            
-            if (_currentTime < 0) _currentTime = 0;
-            
-            if (_currentTime > _duration) _currentTime = _duration;
-            
-            self.currentTimeProgressView.value = _currentTime / _duration;
-            
+
+            _expectTime += distanceTime;
+
+            if (_expectTime < 0) _expectTime = 0;
+
+            if (_expectTime > _player.duration) _expectTime = _player.duration;
+
+            self.currentTimeProgressView.value = _expectTime / _player.duration;
+
             [self see_progressChanged:self.currentTimeProgressView];
-            
+
             _panGestureStartPoint = endPoint;
         }
             break;
@@ -175,46 +206,59 @@ extern NSString * const cacheRangesChangeNotification;
             _panGestureCurrentTimeLabel.hidden = YES;
             break;
     }
-    
-    
 }
 
-
-
-- (IBAction)showOrHiddenTools:(UITapGestureRecognizer *)sender {
+- (IBAction)see_showOrHiddenTools {
     if (self.showAreaHeightConstaint.constant == 0) {
-        self.showAreaHeightConstaint.constant = -88;
+        [self see_showTools];
     }
     else {
-        self.showAreaHeightConstaint.constant = 0;
+        [self see_hiddenTools];
     }
 }
 
-- (IBAction)playOrPauseAction:(UIButton *)sender {
-    if (_responder.playOrPause) {
-        sender.selected = [self.delegate playOrPause:!sender.selected];
+- (IBAction)see_playOrPauseAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [_player play];
+    }
+    else {
+        [_player pause];
     }
 }
 
 - (IBAction)see_closeAction:(UIButton *)sender {
-    if (_responder.close) {
-        [_delegate close];
-    }
+
 }
 
 #pragma mark private method
+- (void)see_showTools {
+    self.showAreaHeightConstaint.constant = -88;
+    self.hiddenToolsTime = 10;
+}
 
+- (void)see_hiddenTools {
+    self.showAreaHeightConstaint.constant = 0;
+    self.hiddenToolsTime = 0;
+}
 
+- (void)see_changeCurrentTime {
+    NSString * timeString = [self see_timeString:_expectTime];
+    self.currentTimeLabel.text = timeString;
+    self.panGestureCurrentTimeLabel.text = timeString;
+}
+//
 - (NSString *)see_timeString:(NSInteger)time {
     return [NSString stringWithFormat:@"%02zd:%02zd",time / 60,time % 60];
 }
-
-#pragma mark getter & setter
-- (void)setDelegate:(id<SEEPlayerToolsViewDelegate>)delegate {
-    _delegate = delegate;
-    _responder.playOrPause = [delegate respondsToSelector:@selector(playOrPause:)];
-    _responder.seekToTime = [delegate respondsToSelector:@selector(seekToTime:)];
-    _responder.close = [delegate respondsToSelector:@selector(close)];
-}
+//
+//#pragma mark getter & setter
+//- (void)setDelegate:(id<SEEPlayerToolsViewDelegate>)delegate {
+//    _delegate = delegate;
+//    _responder.playOrPause = [delegate respondsToSelector:@selector(playOrPause:)];
+//    _responder.seekToTime = [delegate respondsToSelector:@selector(seekToTime:)];
+//    _responder.close = [delegate respondsToSelector:@selector(close)];
+//    _responder.fullScreenOrSmallScreen = [delegate respondsToSelector:@selector(fullScreenOrSmallScreen:)];
+//}
 
 @end

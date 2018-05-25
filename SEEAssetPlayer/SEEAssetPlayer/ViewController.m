@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "SEEPlayer.h"
+#import "SEEPlayerView.h"
 #import "SEEFileInfo.h"
-@interface ViewController () <SEEPlayerUIDelegate>
+@interface ViewController ()
 
-@property (nonatomic, strong) SEEPlayer * player;
+@property (nonatomic, strong) SEEPlayerView * player;
 
 
 @end
@@ -22,12 +22,12 @@
     [super viewDidLoad];
     
     
-    _player = [[SEEPlayer alloc]initWithFrame:CGRectZero];
+    _player = [SEEPlayerView playerView];
     [self.view addSubview:_player];
     [_player setURL:[NSURL URLWithString:@"http://he.yinyuetai.com/uploads/videos/common/88CE01595A940BC83C7AB2C616308D62.mp4?sc=9b0ddcaad115e009&br=3099&vid=2763591&aid=25339&area=KR&vst=0"]];
     self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    _player.UIDelegate = self;
+    
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -39,12 +39,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [_player play];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [_player pause];
 }
 
 - (void)didReceiveMemoryWarning {

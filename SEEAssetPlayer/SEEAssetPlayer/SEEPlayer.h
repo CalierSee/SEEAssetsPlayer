@@ -8,19 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "SEEPlayerToolsView.h"
+#import "SEEPlayerView.h"
 
-@protocol SEEPlayerUIDelegate <NSObject>
-
-/**
- 播放器关闭
- */
-- (void)playerDidClose;
-
-
-
-
-@end
+@class SEEPlayer;
 
 
 typedef NS_ENUM(NSUInteger, SEEPlayerStatus) {
@@ -33,7 +23,7 @@ typedef NS_ENUM(NSUInteger, SEEPlayerStatus) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SEEPlayer : UIView
+@interface SEEPlayer : NSObject
 
 /**
  播放状态
@@ -52,12 +42,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) AVPlayerLayer * playerLayer;
 
-@property (nonatomic, strong, readonly) SEEPlayerToolsView * toolsView;
+@property (nonatomic, assign, readonly) NSTimeInterval duration;
+
+@property (nonatomic, assign, readonly) NSTimeInterval currentTime;
+
+
 
 - (void)play;
 - (void)pause;
 
-@property (nonatomic, weak) id <SEEPlayerUIDelegate> UIDelegate;
+- (void)seekToTime:(NSTimeInterval)time;
 
 
 @end

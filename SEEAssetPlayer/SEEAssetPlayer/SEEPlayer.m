@@ -11,11 +11,15 @@
 #import "SEEPlayerMacro.h"
 #import "SEEFileManager.h"
 
-@interface SEEPlayer () <SEEPlayerToolsViewDelegate>
+@interface SEEPlayer ()
 
 @property (nonatomic, assign) SEEPlayerStatus status;
 
 @property (nonatomic, assign, getter = isBuffing) BOOL buffing;
+
+@property (nonatomic, assign) NSTimeInterval  duration;
+
+@property (nonatomic, assign) NSTimeInterval  currentTime;
 
 @end
 
@@ -26,43 +30,21 @@
     AVPlayer * _player;
     AVPlayerItem * _playerItem;
     AVPlayerLayer * _playerLayer;
-    SEEPlayerToolsView * _toolsView;
     id _timeObserver;
-    NSTimeInterval _duration;
-    
-    struct {
-        int didClose;
-    }_responder;
 }
 
 @synthesize player = _player;
 @synthesize playerItem = _playerItem;
 @synthesize playerLayer = _playerLayer;
 @synthesize currentUrl = _currentUrl;
-@synthesize toolsView = _toolsView;
 
 #pragma mark life circle
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor blackColor];
+- (instancetype)init {
+    if (self = [super init]) {
         //创建resourceLoader在整个播放器生命周期中 resourceLoader 不变
         [self see_initPlayer];
-        _toolsView = [SEEPlayerToolsView playerToolsView];
-        _toolsView.delegate = self;
-        [self addSubview:_toolsView];
     }
     return self;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    _toolsView.frame = self.frame;
-}
-
-- (void)layoutSublayersOfLayer:(CALayer *)layer {
-    [super layoutSublayersOfLayer:layer];
-    _playerLayer.bounds = layer.bounds;
-    _playerLayer.position = layer.position;
 }
 
 - (void)dealloc {
@@ -108,6 +90,34 @@
     self.status = SEEPlayerStatusPause;
 }
 
+- (void)seekToTime:(NSTimeInterval)time {
+    if (self.duration == 0) return;
+    switch (self.status) {
+
+        case SEEPlayerStatusPlay:
+            [_player pause];
+            break;
+        case SEEPlayerStatusComplete:
+            self.status = SEEPlayerStatusPause;
+            break;
+        case SEEPlayerStatusUnknow:
+            return;
+            break;
+
+        default:
+            break;
+    }
+    __weak typeof(self) weakSelf = self;
+    CGFloat scale = time / self.duration;
+    CMTime newTime = CMTimeMake(_player.currentItem.duration.value * scale, _player.currentItem.duration.timescale);
+    [_player seekToTime:newTime completionHandler:^(BOOL finished) {
+        __strong typeof(weakSelf) self = weakSelf;
+        if (finished && self.status == SEEPlayerStatusPlay) {
+            [self->_player play];
+        }
+    }];
+}
+
 #pragma mark action method
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"status"]) {
@@ -143,57 +153,14 @@
         }
     }
     else if ([keyPath isEqualToString:@"duration"]) {
-        _duration = [self see_time:_player.currentItem.duration];
-        [self.toolsView setDuration:_duration];
+        self.duration = [self see_time:_player.currentItem.duration];
     }
     else {
         //do nothing...
     }
 }
 
-#pragma mark SEEPlayerToolsViewDelegate
-- (BOOL)playOrPause:(BOOL)isPlay {
-    if (isPlay) {
-        self.status = SEEPlayerStatusPlay;
-    }
-    else {
-        self.status = SEEPlayerStatusPause;
-    }
-    return isPlay;
-}
 
-
-- (void)seekToTime:(CGFloat)progress {
-    if (_duration == 0) return;
-    switch (self.status) {
-        case SEEPlayerStatusPlay:
-            [_player pause];
-            break;
-        case SEEPlayerStatusComplete:
-            _status = SEEPlayerStatusPause;
-            break;
-        case SEEPlayerStatusUnknow:
-            return;
-            break;
-            
-        default:
-            break;
-    }
-    CMTime newTime = CMTimeMake(_player.currentItem.duration.value * progress, _player.currentItem.duration.timescale);
-    __weak typeof(self) weakSelf = self;
-    [_player seekToTime:newTime completionHandler:^(BOOL finished) {
-        __strong typeof(weakSelf) self = weakSelf;
-        if (finished && self.status == SEEPlayerStatusPlay) {
-            [self->_player play];
-        }
-    }];
-}
-
-- (void)close {
-    if (_responder.didClose) {
-        [self.UIDelegate playerDidClose];
-    }
-}
 
 #pragma mark private method
 - (NSTimeInterval)see_time:(CMTime)time {
@@ -217,7 +184,6 @@
     }
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
     _playerLayer.backgroundColor = [UIColor blackColor].CGColor;
-    [self.layer addSublayer:_playerLayer];
     [self see_preparePlayer];
 }
 
@@ -240,9 +206,8 @@
     __weak typeof(self) weakSelf = self;
     _timeObserver = [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         __strong typeof(weakSelf) self = weakSelf;
-        NSTimeInterval currentTime = [self see_time:time];
-        [self.toolsView setCurrentTime:currentTime];
-        if (currentTime >= self->_duration && self->_duration != 0) {
+        self.currentTime = [self see_time:time];
+        if (self.currentTime >= self.duration && self.duration != 0) {
             self.status = SEEPlayerStatusComplete;
         }
     }];
@@ -282,14 +247,13 @@
 
 - (void)setStatus:(SEEPlayerStatus)status {
     if (status == _status) return;
-    if (_status == SEEPlayerStatusComplete) {
+    if (_status == SEEPlayerStatusComplete && status == SEEPlayerStatusPlay) {
         [self seekToTime:0];
     }
     switch (status) {
         case SEEPlayerStatusPlay:
             SEELog(@"开始播放");
             [_player play];
-            [_toolsView playOrPause:YES];
             break;
         case SEEPlayerStatusPause:
         case SEEPlayerStatusFailed:
@@ -297,7 +261,6 @@
         case SEEPlayerStatusComplete:
             SEELog(@"暂停");
             [_player pause];
-            [_toolsView playOrPause:NO];
             break;
     }
     _status = status;
@@ -311,11 +274,6 @@
         [_player pause];
         [self see_buffingSomeSeconds];
     }
-}
-
-- (void)setUIDelegate:(id<SEEPlayerUIDelegate>)UIDelegate {
-    _UIDelegate = UIDelegate;
-    _responder.didClose = [UIDelegate respondsToSelector:@selector(playerDidClose)];
 }
 
 @end

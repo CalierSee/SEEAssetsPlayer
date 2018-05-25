@@ -91,7 +91,6 @@
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
-    NSLog(@"接收到新的请求");
     if (self.endOffset == 0) {
         self.endOffset = response.expectedContentLength - 1;
     }

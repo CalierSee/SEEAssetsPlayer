@@ -71,7 +71,6 @@
 
 - (void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
     //移除被取消的loadingRequest
-    NSLog(@"移除");
     [self.loadingRequests removeObject:loadingRequest];
     SEELog(@"移除loadingRequest %p \n requestOffset = %lld  requestLength = %lu  currentOffset = %lld",&loadingRequest,loadingRequest.dataRequest.requestedOffset,loadingRequest.dataRequest.requestedLength,loadingRequest.dataRequest.currentOffset);
     
