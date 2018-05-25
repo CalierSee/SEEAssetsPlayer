@@ -9,6 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "SEEPlayerToolsView.h"
+
+@protocol SEEPlayerUIDelegate <NSObject>
+
+/**
+ 播放器关闭
+ */
+- (void)playerDidClose;
+
+
+
+
+@end
+
+
 typedef NS_ENUM(NSUInteger, SEEPlayerStatus) {
     SEEPlayerStatusUnknow = 0,//未知状态，初始状态
     SEEPlayerStatusPlay = 1,//正在播放
@@ -42,6 +56,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)play;
 - (void)pause;
+
+@property (nonatomic, weak) id <SEEPlayerUIDelegate> UIDelegate;
+
 
 @end
 

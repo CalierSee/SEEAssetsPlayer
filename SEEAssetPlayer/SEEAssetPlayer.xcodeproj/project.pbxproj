@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0803EEE120B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0803EEE020B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m */; };
 		080E317A2081957C008905C7 /* SEEResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */; };
 		080E317D2081995A008905C7 /* SEEDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 080E317C2081995A008905C7 /* SEEDownloader.m */; };
 		081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 081F8E8020A29D45003A652E /* SEEDataManager.m */; };
@@ -19,7 +20,6 @@
 		087E8D78208190BA00F67EB5 /* SEEAssetPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D77208190BA00F67EB5 /* SEEAssetPlayerTests.m */; };
 		087E8D83208190BA00F67EB5 /* SEEAssetPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D82208190BA00F67EB5 /* SEEAssetPlayerUITests.m */; };
 		087E8D922081913B00F67EB5 /* SEEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D912081913B00F67EB5 /* SEEPlayer.m */; };
-		08A2917820A181FB004607D1 /* SEEPlayer+UISupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917720A181FB004607D1 /* SEEPlayer+UISupport.m */; };
 		08A2917B20A1825B004607D1 /* SEEPlayerToolsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */; };
 		08A2917D20A18289004607D1 /* SEEPlayerToolsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */; };
 		08A2918020A1A85E004607D1 /* SEEFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917F20A1A85E004607D1 /* SEEFileInfo.m */; };
@@ -49,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		03AE6F7BDB3A82D82A0BD6CA /* libPods-SEEAssetPlayerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SEEAssetPlayerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0803EEDF20B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerFullScreenSupportViewController.h; sourceTree = "<group>"; };
+		0803EEE020B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerFullScreenSupportViewController.m; sourceTree = "<group>"; };
 		080E31782081957C008905C7 /* SEEResourceLoaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEResourceLoaderDelegate.h; sourceTree = "<group>"; };
 		080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEResourceLoaderDelegate.m; sourceTree = "<group>"; };
 		080E317B2081995A008905C7 /* SEEDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEDownloader.h; sourceTree = "<group>"; };
@@ -74,8 +76,6 @@
 		087E8D84208190BA00F67EB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		087E8D902081913B00F67EB5 /* SEEPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayer.h; sourceTree = "<group>"; };
 		087E8D912081913B00F67EB5 /* SEEPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayer.m; sourceTree = "<group>"; };
-		08A2917620A181FB004607D1 /* SEEPlayer+UISupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SEEPlayer+UISupport.h"; sourceTree = "<group>"; };
-		08A2917720A181FB004607D1 /* SEEPlayer+UISupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SEEPlayer+UISupport.m"; sourceTree = "<group>"; };
 		08A2917920A1825B004607D1 /* SEEPlayerToolsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerToolsView.h; sourceTree = "<group>"; };
 		08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerToolsView.m; sourceTree = "<group>"; };
 		08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEEPlayerToolsView.xib; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 				08C100FD20AAD582009E5F66 /* SViewController.m */,
 				087E8D902081913B00F67EB5 /* SEEPlayer.h */,
 				087E8D912081913B00F67EB5 /* SEEPlayer.m */,
-				08A2917620A181FB004607D1 /* SEEPlayer+UISupport.h */,
-				08A2917720A181FB004607D1 /* SEEPlayer+UISupport.m */,
+				0803EEDF20B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.h */,
+				0803EEE020B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m */,
 				08A2917920A1825B004607D1 /* SEEPlayerToolsView.h */,
 				08A2917A20A1825B004607D1 /* SEEPlayerToolsView.m */,
 				08A2917C20A18289004607D1 /* SEEPlayerToolsView.xib */,
@@ -416,13 +416,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08A2917820A181FB004607D1 /* SEEPlayer+UISupport.m in Sources */,
 				087E8D922081913B00F67EB5 /* SEEPlayer.m in Sources */,
 				08C100FE20AAD582009E5F66 /* SViewController.m in Sources */,
 				087E8D63208190BA00F67EB5 /* ViewController.m in Sources */,
 				087E8D6E208190BA00F67EB5 /* main.m in Sources */,
 				087E8D60208190BA00F67EB5 /* AppDelegate.m in Sources */,
 				08A2917B20A1825B004607D1 /* SEEPlayerToolsView.m in Sources */,
+				0803EEE120B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m in Sources */,
 				081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */,
 				08C1010120AAD6AC009E5F66 /* NSObject+Dealloc.m in Sources */,
 				080E317A2081957C008905C7 /* SEEResourceLoaderDelegate.m in Sources */,

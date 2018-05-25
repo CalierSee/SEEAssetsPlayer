@@ -29,6 +29,10 @@
     SEEPlayerToolsView * _toolsView;
     id _timeObserver;
     NSTimeInterval _duration;
+    
+    struct {
+        int didClose;
+    }_responder;
 }
 
 @synthesize player = _player;
@@ -147,7 +151,7 @@
     }
 }
 
-#pragma mark delegate
+#pragma mark SEEPlayerToolsViewDelegate
 - (BOOL)playOrPause:(BOOL)isPlay {
     if (isPlay) {
         self.status = SEEPlayerStatusPlay;
@@ -157,6 +161,7 @@
     }
     return isPlay;
 }
+
 
 - (void)seekToTime:(CGFloat)progress {
     if (_duration == 0) return;
@@ -185,9 +190,9 @@
 }
 
 - (void)close {
-    [self see_clearPlayer];
-    _player = nil;
-    [self removeFromSuperview];
+    if (_responder.didClose) {
+        [self.UIDelegate playerDidClose];
+    }
 }
 
 #pragma mark private method
@@ -306,6 +311,11 @@
         [_player pause];
         [self see_buffingSomeSeconds];
     }
+}
+
+- (void)setUIDelegate:(id<SEEPlayerUIDelegate>)UIDelegate {
+    _UIDelegate = UIDelegate;
+    _responder.didClose = [UIDelegate respondsToSelector:@selector(playerDidClose)];
 }
 
 @end

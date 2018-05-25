@@ -72,6 +72,7 @@ extern NSString * const cacheRangesChangeNotification;
 
 @property (nonatomic, assign) CGPoint  panGestureStartPoint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *showAreaHeightConstaint;
 
 @end
 
@@ -101,7 +102,8 @@ extern NSString * const cacheRangesChangeNotification;
 - (void)setCurrentTime:(NSTimeInterval)time {
     if (_stopProgressViewUpdate) return;
     _currentTime = time;
-    [self see_setCurrentTime];
+    self.currentTimeProgressView.value = _currentTime / _duration;
+    [self see_progressChanged:self.currentTimeProgressView];
 }
 
 
@@ -131,9 +133,6 @@ extern NSString * const cacheRangesChangeNotification;
     self.panGestureCurrentTimeLabel.text = timeString;
 }
 
-- (IBAction)see_cancelChange:(UISlider *)sender {
-    _stopProgressViewUpdate = NO;
-}
 
 - (IBAction)panGestureAction:(UIPanGestureRecognizer *)sender {
     switch (sender.state) {
@@ -160,7 +159,9 @@ extern NSString * const cacheRangesChangeNotification;
             
             if (_currentTime > _duration) _currentTime = _duration;
             
-            [self see_setCurrentTime];
+            self.currentTimeProgressView.value = _currentTime / _duration;
+            
+            [self see_progressChanged:self.currentTimeProgressView];
             
             _panGestureStartPoint = endPoint;
         }
@@ -170,7 +171,7 @@ extern NSString * const cacheRangesChangeNotification;
             _panGestureCurrentTimeLabel.hidden = YES;
             break;
         default:
-            [self see_cancelChange:self.currentTimeProgressView];
+            _stopProgressViewUpdate = NO;
             _panGestureCurrentTimeLabel.hidden = YES;
             break;
     }
@@ -181,9 +182,12 @@ extern NSString * const cacheRangesChangeNotification;
 
 
 - (IBAction)showOrHiddenTools:(UITapGestureRecognizer *)sender {
-    
-    NSLog(@"show or hidden");
-    
+    if (self.showAreaHeightConstaint.constant == 0) {
+        self.showAreaHeightConstaint.constant = -88;
+    }
+    else {
+        self.showAreaHeightConstaint.constant = 0;
+    }
 }
 
 - (IBAction)playOrPauseAction:(UIButton *)sender {
@@ -200,12 +204,6 @@ extern NSString * const cacheRangesChangeNotification;
 
 #pragma mark private method
 
-- (void)see_setCurrentTime {
-    NSString * currentTimeString = [self see_timeString:_currentTime];
-    self.currentTimeLabel.text = currentTimeString;
-    self.panGestureCurrentTimeLabel.text = currentTimeString;
-    self.currentTimeProgressView.value = _currentTime / _duration;
-}
 
 - (NSString *)see_timeString:(NSInteger)time {
     return [NSString stringWithFormat:@"%02zd:%02zd",time / 60,time % 60];
