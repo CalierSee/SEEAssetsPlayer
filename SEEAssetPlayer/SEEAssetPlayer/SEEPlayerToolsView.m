@@ -68,6 +68,10 @@ extern NSString * const cacheRangesChangeNotification;
 
 @property (weak, nonatomic) IBOutlet UIButton *playOrPauseButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *panGestureCurrentTimeLabel;
+
+@property (nonatomic, assign) CGPoint  panGestureStartPoint;
+
 
 @end
 
@@ -80,27 +84,26 @@ extern NSString * const cacheRangesChangeNotification;
     
     BOOL _stopProgressViewUpdate;
     
-    NSInteger _duration;
+    NSTimeInterval _duration;
+    
+    NSTimeInterval _currentTime;
 }
 
 + (instancetype)playerToolsView {
     return [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil].firstObject;
 }
 
-- (void)setDuration:(NSInteger)duration {
+- (void)setDuration:(NSTimeInterval)duration {
     _duration = duration;
     self.durationLabel.text = [self see_timeString:duration];
 }
 
-- (void)setCurrentTime:(NSInteger)time {
+- (void)setCurrentTime:(NSTimeInterval)time {
     if (_stopProgressViewUpdate) return;
-    self.currentTimeLabel.text = [self see_timeString:time];
+    _currentTime = time;
+    [self see_setCurrentTime];
 }
 
-- (void)setProgress:(float)progress {
-    if (_stopProgressViewUpdate) return;
-    self.currentTimeProgressView.value = progress;
-}
 
 
 - (void)playOrPause:(BOOL)isPlay {
@@ -123,12 +126,58 @@ extern NSString * const cacheRangesChangeNotification;
 }
 
 - (IBAction)see_progressChanged:(UISlider *)sender {
-    self.currentTimeLabel.text = [self see_timeString:sender.value * _duration];
+    NSString * timeString = [self see_timeString:sender.value * _duration];
+    self.currentTimeLabel.text = timeString;
+    self.panGestureCurrentTimeLabel.text = timeString;
 }
 
-- (IBAction)see_cancelSeek:(UISlider *)sender {
+- (IBAction)see_cancelChange:(UISlider *)sender {
     _stopProgressViewUpdate = NO;
 }
+
+- (IBAction)panGestureAction:(UIPanGestureRecognizer *)sender {
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+            
+            _panGestureCurrentTimeLabel.hidden = NO;
+            [self see_beginSeek:self.currentTimeProgressView];
+            _panGestureStartPoint = [sender locationInView:sender.view];
+            
+            break;
+        case UIGestureRecognizerStateChanged: {
+            CGPoint endPoint = [sender locationInView:sender.view];
+            
+            CGFloat distance = endPoint.x - _panGestureStartPoint.x;
+            
+            CGFloat width = self.bounds.size.width;
+            //一个屏幕宽度为三分钟 60s * 3m = 180s
+            
+            NSTimeInterval distanceTime = (distance / width) * 180;
+            
+            _currentTime += distanceTime;
+            
+            if (_currentTime < 0) _currentTime = 0;
+            
+            if (_currentTime > _duration) _currentTime = _duration;
+            
+            [self see_setCurrentTime];
+            
+            _panGestureStartPoint = endPoint;
+        }
+            break;
+            case UIGestureRecognizerStateEnded:
+            [self see_seekToTimeAction:self.currentTimeProgressView];
+            _panGestureCurrentTimeLabel.hidden = YES;
+            break;
+        default:
+            [self see_cancelChange:self.currentTimeProgressView];
+            _panGestureCurrentTimeLabel.hidden = YES;
+            break;
+    }
+    
+    
+}
+
 
 
 - (IBAction)showOrHiddenTools:(UITapGestureRecognizer *)sender {
@@ -150,6 +199,14 @@ extern NSString * const cacheRangesChangeNotification;
 }
 
 #pragma mark private method
+
+- (void)see_setCurrentTime {
+    NSString * currentTimeString = [self see_timeString:_currentTime];
+    self.currentTimeLabel.text = currentTimeString;
+    self.panGestureCurrentTimeLabel.text = currentTimeString;
+    self.currentTimeProgressView.value = _currentTime / _duration;
+}
+
 - (NSString *)see_timeString:(NSInteger)time {
     return [NSString stringWithFormat:@"%02zd:%02zd",time / 60,time % 60];
 }

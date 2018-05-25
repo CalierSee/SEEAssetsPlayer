@@ -28,7 +28,7 @@
     AVPlayerLayer * _playerLayer;
     SEEPlayerToolsView * _toolsView;
     id _timeObserver;
-    CMTime _duration;
+    NSTimeInterval _duration;
 }
 
 @synthesize player = _player;
@@ -96,6 +96,14 @@
     [self see_preparePlayer];
 }
 
+- (void)play {
+    self.status = SEEPlayerStatusPlay;
+}
+
+- (void)pause {
+    self.status = SEEPlayerStatusPause;
+}
+
 #pragma mark action method
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"status"]) {
@@ -131,8 +139,8 @@
         }
     }
     else if ([keyPath isEqualToString:@"duration"]) {
-        [self.toolsView setDuration:[self see_time:_player.currentItem.duration]];
-        _duration = _player.currentItem.duration;
+        _duration = [self see_time:_player.currentItem.duration];
+        [self.toolsView setDuration:_duration];
     }
     else {
         //do nothing...
@@ -151,11 +159,22 @@
 }
 
 - (void)seekToTime:(CGFloat)progress {
-    if (CMTIME_IS_INVALID(_duration)) return;
-    if (self.status == SEEPlayerStatusPlay) {
-        [_player pause];        
+    if (_duration == 0) return;
+    switch (self.status) {
+        case SEEPlayerStatusPlay:
+            [_player pause];
+            break;
+        case SEEPlayerStatusComplete:
+            _status = SEEPlayerStatusPause;
+            break;
+        case SEEPlayerStatusUnknow:
+            return;
+            break;
+            
+        default:
+            break;
     }
-    CMTime newTime = CMTimeMake(_duration.value * progress, _duration.timescale);
+    CMTime newTime = CMTimeMake(_player.currentItem.duration.value * progress, _player.currentItem.duration.timescale);
     __weak typeof(self) weakSelf = self;
     [_player seekToTime:newTime completionHandler:^(BOOL finished) {
         __strong typeof(weakSelf) self = weakSelf;
@@ -172,8 +191,8 @@
 }
 
 #pragma mark private method
-- (NSInteger)see_time:(CMTime)time {
-     NSInteger seconds = time.value / time.timescale;
+- (NSTimeInterval)see_time:(CMTime)time {
+     NSTimeInterval seconds = time.value / time.timescale;
     return seconds;
 }
 
@@ -216,10 +235,9 @@
     __weak typeof(self) weakSelf = self;
     _timeObserver = [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         __strong typeof(weakSelf) self = weakSelf;
-        [self.toolsView setCurrentTime:[self see_time:time]];
-        float progress = (time.value * 1.0 / time.timescale) / (self->_duration.value / self->_duration.timescale);
-        [self.toolsView setProgress:progress];
-        if (progress >= 1) {
+        NSTimeInterval currentTime = [self see_time:time];
+        [self.toolsView setCurrentTime:currentTime];
+        if (currentTime >= self->_duration && self->_duration != 0) {
             self.status = SEEPlayerStatusComplete;
         }
     }];
@@ -232,6 +250,7 @@
  */
 - (void)see_clearPlayer {
     if (_player) {
+        [_player pause];
         [_player removeObserver:self forKeyPath:@"status"];
         [_player removeTimeObserver:_timeObserver];
         AVPlayerItem * item = _player.currentItem;

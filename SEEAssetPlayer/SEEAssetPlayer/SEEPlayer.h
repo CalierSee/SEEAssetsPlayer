@@ -30,8 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setURL:(NSURL *)url;
 
-//==========UISupport==========//
-
 @property (nonatomic, strong, readonly) AVPlayer * player;
 
 @property (nonatomic, strong, readonly) NSURL * currentUrl;
@@ -42,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) SEEPlayerToolsView * toolsView;
 
+- (void)play;
+- (void)pause;
 
 @end
 

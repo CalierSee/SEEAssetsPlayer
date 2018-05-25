@@ -8,15 +8,15 @@
  向播放器填充数据
  */
 
-    #import <Foundation/Foundation.h>
-    @class AVURLAsset;
+#import <Foundation/Foundation.h>
+@class AVURLAsset;
 
-    NS_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
-    @interface SEEResourceLoaderDelegate : NSObject
+@interface SEEResourceLoaderDelegate : NSObject
 
-    - (AVURLAsset *)assetWithURL:(NSURL *)url;
+- (AVURLAsset *)assetWithURL:(NSURL *)url;
 
-    @end
+@end
 
-    NS_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

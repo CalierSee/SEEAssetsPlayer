@@ -24,7 +24,6 @@
     
     _player = [[SEEPlayer alloc]initWithFrame:CGRectZero];
     [self.view addSubview:_player];
-//    [_player setURL:[NSURL URLWithString:@"http://221.228.226.15/14/i/h/m/s/ihmsjtbivatkmkmbhilyjtnhlqtxov/sh.yinyuetai.com/DFAF0162A329F8075451D3A8DC525228.mp4"]];
     [_player setURL:[NSURL URLWithString:@"http://he.yinyuetai.com/uploads/videos/common/88CE01595A940BC83C7AB2C616308D62.mp4?sc=9b0ddcaad115e009&br=3099&vid=2763591&aid=25339&area=KR&vst=0"]];
     
     
@@ -36,6 +35,15 @@
     _player.frame = self.view.frame;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_player play];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_player pause];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -23,24 +23,24 @@
     dispatch_queue_t _queue;
 }
 
-    - (AVURLAsset *)assetWithURL:(NSURL *)url {
-        if (_dataManager) {
-            [_dataManager stop];
-            _dataManager = nil;
-        }
-        _url = url;
-        NSURLComponents * components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
-        //替换scheme
-        components.scheme = @"seeplayer";
-        NSURL * target = [components URL];
-        //使用替换后的url创建AVURLAssets
-        AVURLAsset * asset = [AVURLAsset assetWithURL:target];
-        //为了防止阻塞主线程，我们新建一个串行队列来接收代理回调
-        [asset.resourceLoader setDelegate:self queue:self.queue];
-        //创建下载器
-        _dataManager = [[SEEDataManager alloc]initWithURL:url delegate:self];
-        return asset;
+- (AVURLAsset *)assetWithURL:(NSURL *)url {
+    if (_dataManager) {
+        [_dataManager stop];
+        _dataManager = nil;
     }
+    _url = url;
+    NSURLComponents * components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
+    //替换scheme
+    components.scheme = @"seeplayer";
+    NSURL * target = [components URL];
+    //使用替换后的url创建AVURLAssets
+    AVURLAsset * asset = [AVURLAsset assetWithURL:target];
+    //为了防止阻塞主线程，我们新建一个串行队列来接收代理回调
+    [asset.resourceLoader setDelegate:self queue:self.queue];
+    //创建下载器
+    _dataManager = [[SEEDataManager alloc]initWithURL:url delegate:self];
+    return asset;
+}
 
 - (void)dealloc {
     [_dataManager stop];
@@ -48,34 +48,34 @@
 }
 
 #pragma mark private method
-    - (long long)see_expectOffset {
-        //获取最新的loadingRequest的currentOffset即可
-        if (self.loadingRequests.count != 0) {
-            return ((AVAssetResourceLoadingRequest *)self.loadingRequests.lastObject).dataRequest.currentOffset;
-        }
-        return 0;
+- (long long)see_expectOffset {
+    //获取最新的loadingRequest的currentOffset即可
+    if (self.loadingRequests.count != 0) {
+        return ((AVAssetResourceLoadingRequest *)self.loadingRequests.lastObject).dataRequest.currentOffset;
     }
+    return 0;
+}
 
 
 #pragma mark AVAssetResourceLoaderDelegate
 //接收到数据请求
-    - (BOOL)resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest {
+- (BOOL)resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest {
     //    Thread; //子线程
-        //将request添加进数组记录，得到数据后进行填充
-        [self.loadingRequests addObject:loadingRequest];
-        SEELog(@"接收到loadingRequest  %p\n requestOffset = %lld  requestLength = %lu",loadingRequest,loadingRequest.dataRequest.requestedOffset,loadingRequest.dataRequest.requestedLength);
-        //dataManager开始准备推送数据
-        [_dataManager begin];
-        return YES;
-    }
+    //将request添加进数组记录，得到数据后进行填充
+    [self.loadingRequests addObject:loadingRequest];
+    SEELog(@"接收到loadingRequest  %p\n requestOffset = %lld  requestLength = %lu",loadingRequest,loadingRequest.dataRequest.requestedOffset,loadingRequest.dataRequest.requestedLength);
+    //dataManager开始准备推送数据
+    [_dataManager begin];
+    return YES;
+}
 
-    - (void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
-        //移除被取消的loadingRequest
-        NSLog(@"移除");
-        [self.loadingRequests removeObject:loadingRequest];
-        SEELog(@"移除loadingRequest %p \n requestOffset = %lld  requestLength = %lu  currentOffset = %lld",&loadingRequest,loadingRequest.dataRequest.requestedOffset,loadingRequest.dataRequest.requestedLength,loadingRequest.dataRequest.currentOffset);
-        
-    }
+- (void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
+    //移除被取消的loadingRequest
+    NSLog(@"移除");
+    [self.loadingRequests removeObject:loadingRequest];
+    SEELog(@"移除loadingRequest %p \n requestOffset = %lld  requestLength = %lu  currentOffset = %lld",&loadingRequest,loadingRequest.dataRequest.requestedOffset,loadingRequest.dataRequest.requestedLength,loadingRequest.dataRequest.currentOffset);
+    
+}
 
 
 #pragma mark SEEDataManagerDelegate
@@ -135,18 +135,18 @@
 
 #pragma mark getter & setter
 
-    /**
-     串行队列
-
-     @return 这个队列用于执行接收播放器发出的resourceLoader、下载器接收回调、文件管理器推送数据
-     */
-    - (dispatch_queue_t)queue {
-        if (_queue) {
-            return _queue;
-        }
-        _queue = dispatch_queue_create("player", DISPATCH_QUEUE_SERIAL);
+/**
+ 串行队列
+ 
+ @return 这个队列用于执行接收播放器发出的resourceLoader、下载器接收回调、文件管理器推送数据
+ */
+- (dispatch_queue_t)queue {
+    if (_queue) {
         return _queue;
     }
+    _queue = dispatch_queue_create("player", DISPATCH_QUEUE_SERIAL);
+    return _queue;
+}
 
 - (NSMutableArray *)loadingRequests {
     if (_loadingRequests == nil) {

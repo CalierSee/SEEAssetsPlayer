@@ -10,45 +10,45 @@
 
 extern NSString * const cacheRangesChangeNotification;
 
-    @interface SEEData: NSObject
-    //数据起始位置
-    @property (nonatomic, assign, readonly) long long location;
-    //数据长度
-    @property (nonatomic, assign, readonly) NSUInteger  length;
-    //数据结束位置
-    @property (nonatomic, assign, readonly) long long end;
-    //数据
-    @property (nonatomic, strong, readonly) __kindof NSData * data;
+@interface SEEData: NSObject
+//数据起始位置
+@property (nonatomic, assign, readonly) long long location;
+//数据长度
+@property (nonatomic, assign, readonly) NSUInteger  length;
+//数据结束位置
+@property (nonatomic, assign, readonly) long long end;
+//数据
+@property (nonatomic, strong, readonly) __kindof NSData * data;
 
-    + (instancetype)dataWithLocation:(long long)location lenght:(NSUInteger)length data:(__kindof NSData *)data;
++ (instancetype)dataWithLocation:(long long)location lenght:(NSUInteger)length data:(__kindof NSData *)data;
 
 
-    /**
-     拼接数据
-     只有通过mutableData创建的对象可以使用该方法
-     @param data 数据
-     @param length 长度
-     */
-    - (void)appendData:(const void *)data length:(NSUInteger)length;
+/**
+ 拼接数据
+ 只有通过mutableData创建的对象可以使用该方法
+ @param data 数据
+ @param length 长度
+ */
+- (void)appendData:(const void *)data length:(NSUInteger)length;
 
-    /**
-     初始化指定offset之前的数据
-     只有通过mutableData创建的对象可以使用该方法
-     @param offset offset
-     */
-    - (void)initOffset:(long long)offset;
+/**
+ 初始化指定offset之前的数据
+ 只有通过mutableData创建的对象可以使用该方法
+ @param offset offset
+ */
+- (void)initOffset:(long long)offset;
 
-    + (instancetype)data;
++ (instancetype)data;
 
-    + (instancetype)mutableData;
++ (instancetype)mutableData;
 
-    - (id)copy;
+- (id)copy;
 
-    - (id)mutableCopy;
+- (id)mutableCopy;
 
-    - (BOOL)isEqual:(id)object;
+- (BOOL)isEqual:(id)object;
 
-    @end
+@end
 
 @interface SEEInputStream: NSObject
 

@@ -142,20 +142,20 @@
     [dict writeToFile:_path atomically:YES];
 }
 
-    - (SEEFile *)fileForOffset:(long long)offset {
-        __block SEEFile * file = nil;
-        self.missingEndOffset = self.fileAttribute.totalBytes;
-        [self.files enumerateObjectsUsingBlock:^(SEEFile * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.startOffset <= offset && obj.endOffset > offset) {
-                file = obj;
-                *stop = YES;
-            }
-            if (obj.startOffset > offset && obj.startOffset < self.missingEndOffset) {
-                self.missingEndOffset = obj.startOffset - 1;
-            }
-        }];
-        return file;
-    }
+- (SEEFile *)fileForOffset:(long long)offset {
+    __block SEEFile * file = nil;
+    self.missingEndOffset = self.fileAttribute.totalBytes;
+    [self.files enumerateObjectsUsingBlock:^(SEEFile * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.startOffset <= offset && obj.endOffset > offset) {
+            file = obj;
+            *stop = YES;
+        }
+        if (obj.startOffset > offset && obj.startOffset < self.missingEndOffset) {
+            self.missingEndOffset = obj.startOffset - 1;
+        }
+    }];
+    return file;
+}
 
 - (SEEFile *)acceptableFileForDownloadOffset:(long long)offset {
     __block SEEFile * file = nil;

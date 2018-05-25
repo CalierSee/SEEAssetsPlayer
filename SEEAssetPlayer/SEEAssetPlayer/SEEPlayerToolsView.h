@@ -40,11 +40,9 @@
 
 @property (nonatomic, weak) id <SEEPlayerToolsViewDelegate> delegate;
 
-- (void)setCurrentTime:(NSInteger)time;
+- (void)setCurrentTime:(NSTimeInterval)time;
 
-- (void)setProgress:(float)progress;
-
-- (void)setDuration:(NSInteger)duration;
+- (void)setDuration:(NSTimeInterval)duration;
 
 - (void)playOrPause:(BOOL)isPlay;
 
