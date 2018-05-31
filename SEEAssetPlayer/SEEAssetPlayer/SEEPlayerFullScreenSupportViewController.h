@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SEEPlayerView;
 @interface SEEPlayerFullScreenSupportViewController : UIViewController
+
+- (instancetype)initWithPlayer:(SEEPlayerView *)player;
 
 @end

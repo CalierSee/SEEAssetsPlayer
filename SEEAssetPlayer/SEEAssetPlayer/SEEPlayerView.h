@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, SEEPlayerViewReturnButtonType) {
+    SEEPlayerViewReturnButtonTypeNone,
+    SEEPlayerViewReturnButtonTypeReturn,
+    SEEPlayerViewReturnButtonTypeClose,
+};
 
 @class SEEPlayerView;
 
@@ -39,5 +44,13 @@
 + (instancetype)playerView;
 
 - (void)setURL:(NSURL *)url;
+
+- (void)setURL:(NSURL *)url title:(NSString *)title;
+
+@property (nonatomic, assign) SEEPlayerViewReturnButtonType returnType;
+
+@property (nonatomic, assign, readonly, getter = isFullScreen) BOOL fullScreen;
+
+
 
 @end

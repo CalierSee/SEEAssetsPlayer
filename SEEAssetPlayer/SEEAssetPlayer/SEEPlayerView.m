@@ -9,7 +9,8 @@
 
 #import "SEEPlayerView.h"
 #import "SEEPlayer.h"
-
+#import "UIViewController+Top.h"
+#import "SEEPlayerFullScreenSupportViewController.h"
 #define kAutoHiddenToolsTime 6
 
 #define kPanGestureScreenWidthTime 180
@@ -87,6 +88,13 @@ extern NSString * const exceptFileNameNotification;
 @property (weak, nonatomic) IBOutlet SEEPlayerCacheView *cacheRangesView;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *closeButtonWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *returnButtonWidthConstraint;
+
+@property (nonatomic, assign) BOOL fullScreen;
+
+
 @end
 
 @implementation SEEPlayerView {
@@ -101,6 +109,8 @@ extern NSString * const exceptFileNameNotification;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self.currentTimeProgressView setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateNormal];
+    self.returnType = SEEPlayerViewReturnButtonTypeNone;
     _hiddenToolsTime = kAutoHiddenToolsTime;
     _player = [[SEEPlayer alloc]init];
     [self.layer insertSublayer:_player.playerLayer atIndex:0];
@@ -138,6 +148,11 @@ extern NSString * const exceptFileNameNotification;
     });
 }
 
+- (void)setURL:(NSURL *)url title:(NSString *)title {
+    [self setURL:url];
+    self.titleLabel.text = title;
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"currentTime"]) {
         if (_stopProgressViewUpdate || _expectTime == _player.currentTime) return;
@@ -154,8 +169,7 @@ extern NSString * const exceptFileNameNotification;
                 self.playOrPauseButton.selected = YES;
                 break;
             case SEEPlayerStatusComplete:
-                
-                
+                [self see_showTools];
             default:
                 self.playOrPauseButton.selected = NO;
                 break;
@@ -179,9 +193,15 @@ extern NSString * const exceptFileNameNotification;
 
 #pragma mark action method
 
-- (IBAction)see_fullScreenAction:(UIButton *)sender {
+- (IBAction)see_changeScreenAction:(UIButton *)sender {
     [self see_showTools];
-    
+    sender.selected = !sender.selected;
+    self.fullScreen = sender.selected;
+    if (sender.selected) {
+        UIViewController * topViewController = [UIViewController topViewController];
+        SEEPlayerFullScreenSupportViewController * vc = [[SEEPlayerFullScreenSupportViewController alloc]initWithPlayer:self];
+        [topViewController presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 - (IBAction)see_beginSeek:(UISlider *)sender {
@@ -276,6 +296,7 @@ extern NSString * const exceptFileNameNotification;
 
 #pragma mark private method
 - (void)see_exceptFileNameNotification:(NSNotification *)noti {
+    if (self.titleLabel.text.length != 0) return;
     self.titleLabel.text = noti.userInfo[@"exceptFileName"];
 }
 
@@ -284,6 +305,7 @@ extern NSString * const exceptFileNameNotification;
     [self see_progressChanged:self.currentTimeProgressView];
     self.durationLabel.text = @"00:00";
     self.cacheRangesView.cacheRanges = nil;
+    self.titleLabel.text = @"";
 }
 
 
@@ -311,13 +333,25 @@ extern NSString * const exceptFileNameNotification;
     return [NSString stringWithFormat:@"%02zd:%02zd",time / 60,time % 60];
 }
 
-//#pragma mark getter & setter
-//- (void)setDelegate:(id<SEEPlayerToolsViewDelegate>)delegate {
-//    _delegate = delegate;
-//    _responder.playOrPause = [delegate respondsToSelector:@selector(playOrPause:)];
-//    _responder.seekToTime = [delegate respondsToSelector:@selector(seekToTime:)];
-//    _responder.close = [delegate respondsToSelector:@selector(close)];
-//    _responder.fullScreenOrSmallScreen = [delegate respondsToSelector:@selector(fullScreenOrSmallScreen:)];
-//}
+#pragma mark getter & setter
+
+- (void)setReturnType:(SEEPlayerViewReturnButtonType)returnType {
+    _returnType = returnType;
+    switch (returnType) {
+        case SEEPlayerViewReturnButtonTypeNone:
+        case SEEPlayerViewReturnButtonTypeReturn:
+            self.closeButtonWidthConstraint.constant = 0;
+            if (returnType == SEEPlayerViewReturnButtonTypeReturn) {
+                self.returnButtonWidthConstraint.constant = 24;
+                break;
+            }
+        case SEEPlayerViewReturnButtonTypeClose:
+            self.returnButtonWidthConstraint.constant = 0;
+            if (returnType == SEEPlayerViewReturnButtonTypeClose) {
+                self.closeButtonWidthConstraint.constant = 24;
+            }
+    }
+}
+
 
 @end

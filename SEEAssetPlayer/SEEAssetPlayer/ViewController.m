@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "SEEPlayerView.h"
 #import "SEEFileInfo.h"
+#import "UIViewController+Top.h"
 @interface ViewController ()
 
 @property (nonatomic, strong) SEEPlayerView * player;
@@ -25,7 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //@"http://he.yinyuetai.com/uploads/videos/common/88CE01595A940BC83C7AB2C616308D62.mp4?sc=9b0ddcaad115e009&br=3099&vid=2763591&aid=25339&area=KR&vst=0"
+    
+        NSLog(@"%@",[UIViewController topViewController]);
     
     _player = [SEEPlayerView playerView];
     [self.view addSubview:_player];
@@ -41,6 +43,7 @@
 - (void)see_next {
     self.currentIndex ++;
     [_player setURL:[NSURL URLWithString:self.douyinVideoStrings[self.currentIndex]]];
+    _player.returnType = SEEPlayerViewReturnButtonTypeReturn;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -70,6 +73,7 @@
 - (NSArray<NSString *> *)douyinVideoStrings {
     if(!_douyinVideoStrings){
         _douyinVideoStrings = @[
+                                @"http://he.yinyuetai.com/uploads/videos/common/88CE01595A940BC83C7AB2C616308D62.mp4?sc=9b0ddcaad115e009&br=3099&vid=2763591&aid=25339&area=KR&vst=0",
                                 @"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",
                                 @"http://p11s9kqxf.bkt.clouddn.com/buff.mp4",
                                 @"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",
