@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const exceptFileNameNotification;
+
 @interface NSObject(dictionary)
 
 - (NSDictionary *)dictionary;

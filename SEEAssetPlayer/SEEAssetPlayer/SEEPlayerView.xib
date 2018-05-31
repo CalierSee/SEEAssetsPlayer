@@ -139,15 +139,21 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="lhW-Mq-3ys">
+                            <rect key="frame" x="177" y="42" width="20" height="20"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                     <constraints>
+                        <constraint firstItem="lhW-Mq-3ys" firstAttribute="centerY" secondItem="fxh-hi-JPV" secondAttribute="centerY" id="AB6-Jr-CyG"/>
+                        <constraint firstItem="lhW-Mq-3ys" firstAttribute="centerX" secondItem="fxh-hi-JPV" secondAttribute="centerX" id="POl-Be-mfO"/>
                         <constraint firstItem="XOz-x3-qZ5" firstAttribute="centerX" secondItem="fxh-hi-JPV" secondAttribute="centerX" id="R3d-5y-kZX"/>
                         <constraint firstItem="XOz-x3-qZ5" firstAttribute="centerY" secondItem="fxh-hi-JPV" secondAttribute="centerY" id="oin-ho-A6M"/>
                     </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="Zrf-VJ-MaL" appends="YES" id="t3B-bA-v0B"/>
+                        <outletCollection property="gestureRecognizers" destination="dWQ-ME-TP9" appends="YES" id="Qsw-FD-37m"/>
                     </connections>
                 </view>
             </subviews>
@@ -168,13 +174,16 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="cacheRangesView" destination="XpD-fC-bbU" id="PDa-if-t2D"/>
                 <outlet property="currentTimeLabel" destination="1SW-hN-rjA" id="BbP-b9-kNq"/>
                 <outlet property="currentTimeProgressView" destination="t8c-fM-jfq" id="hQ8-of-IKh"/>
                 <outlet property="durationLabel" destination="b8m-oy-I88" id="Tpg-jf-Aqx"/>
+                <outlet property="loadingIndicator" destination="lhW-Mq-3ys" id="A95-gc-rS2"/>
+                <outlet property="panGesture" destination="Zrf-VJ-MaL" id="77I-Sg-Te9"/>
                 <outlet property="panGestureCurrentTimeLabel" destination="XOz-x3-qZ5" id="yhp-NX-39D"/>
                 <outlet property="playOrPauseButton" destination="b5V-Tu-PPM" id="KA0-29-oK9"/>
                 <outlet property="showAreaHeightConstaint" destination="w4a-c4-Xiv" id="yL0-UU-Qjf"/>
-                <outletCollection property="gestureRecognizers" destination="dWQ-ME-TP9" appends="YES" id="GES-Ms-jhb"/>
+                <outlet property="titleLabel" destination="FrH-O3-WSz" id="ErA-tp-zWT"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="299"/>
         </view>

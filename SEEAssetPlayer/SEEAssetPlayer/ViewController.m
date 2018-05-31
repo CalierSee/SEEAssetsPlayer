@@ -13,6 +13,11 @@
 
 @property (nonatomic, strong) SEEPlayerView * player;
 
+@property (nonatomic, strong) NSArray * douyinVideoStrings;
+
+
+@property (nonatomic, assign) NSInteger  currentIndex;
+
 
 @end
 
@@ -20,16 +25,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //@"http://he.yinyuetai.com/uploads/videos/common/88CE01595A940BC83C7AB2C616308D62.mp4?sc=9b0ddcaad115e009&br=3099&vid=2763591&aid=25339&area=KR&vst=0"
     
     _player = [SEEPlayerView playerView];
     [self.view addSubview:_player];
-    [_player setURL:[NSURL URLWithString:@"http://he.yinyuetai.com/uploads/videos/common/88CE01595A940BC83C7AB2C616308D62.mp4?sc=9b0ddcaad115e009&br=3099&vid=2763591&aid=25339&area=KR&vst=0"]];
+    [_player setURL:[NSURL URLWithString:self.douyinVideoStrings[self.currentIndex]]];
     self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"下一个" style:UIBarButtonItemStyleDone target:self action:@selector(see_next)];
     
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)see_next {
+    self.currentIndex ++;
+    [_player setURL:[NSURL URLWithString:self.douyinVideoStrings[self.currentIndex]]];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -54,6 +65,36 @@
 - (void)playerDidClose {
     [_player removeFromSuperview];
     _player = nil;
+}
+
+- (NSArray<NSString *> *)douyinVideoStrings {
+    if(!_douyinVideoStrings){
+        _douyinVideoStrings = @[
+                                @"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/buff.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/child.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/english.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/erha.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/face.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/fanglian.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/gao.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/girlfriend.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/haha.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/hide.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/juzi.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/keai.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/nvpengy.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/samo.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/shagou.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/shagougou.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/shamiao.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/sichuan.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/tuolaiji.mp4",
+                                @"http://p11s9kqxf.bkt.clouddn.com/xiaobiaozi.mp4",
+                                ];
+    }
+    return _douyinVideoStrings;
 }
 
 @end

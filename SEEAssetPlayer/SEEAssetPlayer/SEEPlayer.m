@@ -50,6 +50,9 @@
 - (void)dealloc {
     //清除播放器
     [self see_clearPlayer];
+    [_player removeObserver:self forKeyPath:@"status"];
+    [_player removeTimeObserver:_timeObserver];
+    _timeObserver = nil;
 }
 
 #pragma mark public method
@@ -70,24 +73,29 @@
         _loadCount = 0;
         _currentUrl = url;
     }
+    [_player pause];
+    //0 播放器播放新url之前清除上一次的监听等
+    [self see_clearPlayer];
     //1 播放状态重置
     self.status = SEEPlayerStatusUnknow;
     //2 重新设置item
-    AVPlayerItem * newItem = [AVPlayerItem playerItemWithAsset:[_resourceLoaderDelegate assetWithURL:url] automaticallyLoadedAssetKeys:@[@"duration",@"preferredRate",@"preferredVolume",@"preferredTransform"]];
-    //3 播放器播放新url之前清除上一次的监听等
-    [self see_clearPlayer];
-    //4 设置新的item
-    [_player replaceCurrentItemWithPlayerItem:newItem];
-    //5 添加对播放器的监听
+    AVPlayerItem * newItem = [AVPlayerItem playerItemWithAsset:[self->_resourceLoaderDelegate assetWithURL:url] automaticallyLoadedAssetKeys:@[@"duration",@"preferredRate",@"preferredVolume",@"preferredTransform"]];
+    //3 设置新的item
+    [self->_player replaceCurrentItemWithPlayerItem:newItem];
+    //4 添加对播放器的监听
     [self see_preparePlayer];
 }
 
 - (void)play {
-    self.status = SEEPlayerStatusPlay;
+    if (self.status != SEEPlayerStatusPlay) {
+        self.status = SEEPlayerStatusPlay;
+    }
 }
 
 - (void)pause {
-    self.status = SEEPlayerStatusPause;
+    if (self.status != SEEPlayerStatusPause) {
+        self.status = SEEPlayerStatusPause;
+    }
 }
 
 - (void)seekToTime:(NSTimeInterval)time {
@@ -135,6 +143,9 @@
             case AVPlayerStatusFailed:
                 //avplayer准备失败 重新创建
                 SEELog(@"avplayer创建失败 %@",_player.error);
+                [_player removeObserver:self forKeyPath:@"status"];
+                [_player removeTimeObserver:_timeObserver];
+                _timeObserver = nil;
                 [self see_initPlayer];
                 [self setURL:_currentUrl];
                 break;
@@ -185,24 +196,7 @@
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
     _playerLayer.backgroundColor = [UIColor blackColor].CGColor;
     [self see_preparePlayer];
-}
-
-/**
- 准备player
- 添加player状态监听
- 添加对item监听
- */
-- (void)see_preparePlayer {
     [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-    AVPlayerItem * item = _player.currentItem;
-    if (item == nil) return;
-    [item addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
-    [item addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
-    [item addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:nil];
-    //如果用户没有手动暂停播放器则初始化播放器后默认播放
-    if (self.status != SEEPlayerStatusPause) {
-        self.status = SEEPlayerStatusPlay;
-    }
     __weak typeof(self) weakSelf = self;
     _timeObserver = [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         __strong typeof(weakSelf) self = weakSelf;
@@ -214,15 +208,30 @@
 }
 
 /**
+ 准备player
+ 添加player状态监听
+ 添加对item监听
+ */
+- (void)see_preparePlayer {
+    AVPlayerItem * item = _player.currentItem;
+    if (item == nil) return;
+    [item addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
+    [item addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
+    [item addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:nil];
+    //如果用户没有手动暂停播放器则初始化播放器后默认播放
+    self.status = SEEPlayerStatusPlay;
+//    if (self.status != SEEPlayerStatusPause) {
+//    }
+}
+
+/**
  清除player
  清除player状态监听
  清除对item监听
  */
 - (void)see_clearPlayer {
-    if (_player) {
-        [_player pause];
-        [_player removeObserver:self forKeyPath:@"status"];
-        [_player removeTimeObserver:_timeObserver];
+    [_player pause];
+    if (_player.currentItem != nil) {
         AVPlayerItem * item = _player.currentItem;
         if (item == nil) return;
         [item removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];

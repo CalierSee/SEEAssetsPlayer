@@ -19,7 +19,7 @@
 
 - (void)see_dealloc {
     if ([NSStringFromClass([self class]) hasPrefix:@"SEE"]) {
-        NSLog(@"dealloc %@",NSStringFromClass([self class]));
+//        NSLog(@"dealloc %@",NSStringFromClass([self class]));
     }
     [self see_dealloc];
 }

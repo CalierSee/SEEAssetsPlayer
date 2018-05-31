@@ -8,6 +8,9 @@
 
 #import "SEEFileInfo.h"
 #import <objc/runtime.h>
+
+NSString * const exceptFileNameNotification = @"exceptFileNameNotification";
+
 @implementation NSObject(dictionary)
 
 - (NSDictionary *)dictionary {
@@ -48,6 +51,12 @@
 - (void)setCacheBytes:(long long)cacheBytes {
     _cacheBytes = cacheBytes;
     _isComplete = cacheBytes == _totalBytes;
+}
+
+- (void)setExceptFileName:(NSString *)exceptFileName {
+    if ([_exceptFileName isEqualToString:exceptFileName]) return;
+    _exceptFileName = exceptFileName;
+    [[NSNotificationCenter defaultCenter]postNotificationName:exceptFileNameNotification object:nil userInfo:@{@"exceptFileName": exceptFileName}];
 }
 
 @end
@@ -179,7 +188,5 @@
     }
     return _path;
 }
-
-
 
 @end

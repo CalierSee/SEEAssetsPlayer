@@ -12,6 +12,10 @@
 
 @class SEEPlayer;
 
+//缓存区间更新通知
+extern NSString * const cacheRangesChangeNotification;
+//文件名更新通知
+extern NSString * const exceptFileNameNotification;
 
 typedef NS_ENUM(NSUInteger, SEEPlayerStatus) {
     SEEPlayerStatusUnknow = 0,//未知状态，初始状态

@@ -9,7 +9,14 @@
 
 #import "SEEPlayerView.h"
 #import "SEEPlayer.h"
+
+#define kAutoHiddenToolsTime 6
+
+#define kPanGestureScreenWidthTime 180
+
 extern NSString * const cacheRangesChangeNotification;
+
+extern NSString * const exceptFileNameNotification;
 
 @interface SEEPlayerCacheView: UIView
 
@@ -17,21 +24,13 @@ extern NSString * const cacheRangesChangeNotification;
 
 @property (nonatomic, assign) long long  totalBytes;
 
-
-
 @end
 
 @implementation SEEPlayerCacheView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(see_configureCacheRanges:) name:cacheRangesChangeNotification object:nil];
-}
-
-- (void)see_configureCacheRanges:(NSNotification *)noti {
-    _totalBytes = ((NSNumber *)noti.userInfo[@"total"]).longLongValue;
-    _cacheRanges = noti.userInfo[@"ranges"];
-    [self setNeedsDisplay];
+    
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -52,6 +51,11 @@ extern NSString * const cacheRangesChangeNotification;
     CGContextSetLineWidth(context, rect.size.height);
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.5].CGColor);
     CGContextStrokePath(context);
+}
+
+- (void)setCacheRanges:(NSArray<NSValue *> *)cacheRanges {
+    _cacheRanges = cacheRanges;
+    [self setNeedsDisplay];
 }
 
 
@@ -76,7 +80,13 @@ extern NSString * const cacheRangesChangeNotification;
 
 @property (nonatomic, assign) NSTimeInterval hiddenToolsTime;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
+@property (weak, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
+
+@property (weak, nonatomic) IBOutlet SEEPlayerCacheView *cacheRangesView;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end
 
 @implementation SEEPlayerView {
@@ -91,18 +101,23 @@ extern NSString * const cacheRangesChangeNotification;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _hiddenToolsTime = 10;
+    _hiddenToolsTime = kAutoHiddenToolsTime;
     _player = [[SEEPlayer alloc]init];
     [self.layer insertSublayer:_player.playerLayer atIndex:0];
     [_player addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:nil];
     [_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
     [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    [_player addObserver:self forKeyPath:@"buffing" options:NSKeyValueObservingOptionNew context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(see_exceptFileNameNotification:) name:exceptFileNameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(see_configureCacheRanges:) name:cacheRangesChangeNotification object:nil];
 }
 
 - (void)dealloc {
     [_player removeObserver:self forKeyPath:@"duration"];
     [_player removeObserver:self forKeyPath:@"currentTime"];
     [_player removeObserver:self forKeyPath:@"status"];
+    [_player removeObserver:self forKeyPath:@"buffing"];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)layoutSublayersOfLayer:(CALayer *)layer {
@@ -112,12 +127,20 @@ extern NSString * const cacheRangesChangeNotification;
 }
 
 - (void)setURL:(NSURL *)url {
-    [_player setURL:url];
+    _stopProgressViewUpdate = YES;
+    [_player pause];
+    [self.loadingIndicator startAnimating];
+    [self see_initTools];
+    [self see_showTools];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_player setURL:url];
+        _stopProgressViewUpdate = NO;
+    });
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"currentTime"]) {
-        if (_stopProgressViewUpdate) return;
+        if (_stopProgressViewUpdate || _expectTime == _player.currentTime) return;
         if (_hiddenToolsTime > 0 && --_hiddenToolsTime == 0) {
             [self see_showOrHiddenTools];
         }
@@ -130,13 +153,26 @@ extern NSString * const cacheRangesChangeNotification;
             case SEEPlayerStatusPlay:
                 self.playOrPauseButton.selected = YES;
                 break;
+            case SEEPlayerStatusComplete:
+                
                 
             default:
                 self.playOrPauseButton.selected = NO;
                 break;
         }
     }
+    else if ([keyPath isEqualToString:@"buffing"]) {
+        if (_player.isBuffing) {
+            [self.loadingIndicator startAnimating];
+        }
+        else {
+            [self.loadingIndicator stopAnimating];
+        }
+    }
     else if ([keyPath isEqualToString:@"duration"]) {
+        if (_player.duration < kPanGestureScreenWidthTime / 2) {
+            self.panGesture.enabled = NO;
+        }
         self.durationLabel.text = [self see_timeString:_player.duration];
     }
 }
@@ -144,17 +180,18 @@ extern NSString * const cacheRangesChangeNotification;
 #pragma mark action method
 
 - (IBAction)see_fullScreenAction:(UIButton *)sender {
-
+    [self see_showTools];
     
 }
 
 - (IBAction)see_beginSeek:(UISlider *)sender {
+    [self see_showTools];
     _stopProgressViewUpdate = YES;
 }
 
 - (IBAction)see_seekToTimeAction:(UISlider *)sender {
     [_player seekToTime:sender.value * _player.duration];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         self->_stopProgressViewUpdate = NO;
     });
 }
@@ -169,7 +206,6 @@ extern NSString * const cacheRangesChangeNotification;
         case UIGestureRecognizerStateBegan:
 
             _panGestureCurrentTimeLabel.hidden = NO;
-            [self see_showTools];
             [self see_beginSeek:self.currentTimeProgressView];
             _panGestureStartPoint = [sender locationInView:sender.view];
 
@@ -180,9 +216,9 @@ extern NSString * const cacheRangesChangeNotification;
             CGFloat distance = endPoint.x - _panGestureStartPoint.x;
 
             CGFloat width = self.bounds.size.width;
-            //一个屏幕宽度为三分钟 60s * 3m = 180s
+            //一个屏幕宽度为kPanGestureScreenWidthTime s 并且 视频时长小于 kPanGestureScreenWidthTime 的二分之一 不提供拖动手势
 
-            NSTimeInterval distanceTime = (distance / width) * 180;
+            NSTimeInterval distanceTime = (distance / width) * kPanGestureScreenWidthTime;
 
             _expectTime += distanceTime;
 
@@ -218,6 +254,7 @@ extern NSString * const cacheRangesChangeNotification;
 }
 
 - (IBAction)see_playOrPauseAction:(UIButton *)sender {
+    [self see_showTools];
     sender.selected = !sender.selected;
     if (sender.selected) {
         [_player play];
@@ -231,14 +268,36 @@ extern NSString * const cacheRangesChangeNotification;
 
 }
 
+- (void)see_configureCacheRanges:(NSNotification *)noti {
+    if (_stopProgressViewUpdate) return;
+    self.cacheRangesView.totalBytes = ((NSNumber *)noti.userInfo[@"total"]).longLongValue;
+    self.cacheRangesView.cacheRanges = noti.userInfo[@"ranges"];
+}
+
 #pragma mark private method
+- (void)see_exceptFileNameNotification:(NSNotification *)noti {
+    self.titleLabel.text = noti.userInfo[@"exceptFileName"];
+}
+
+- (void)see_initTools {
+    self.currentTimeProgressView.value = 0;
+    [self see_progressChanged:self.currentTimeProgressView];
+    self.durationLabel.text = @"00:00";
+    self.cacheRangesView.cacheRanges = nil;
+}
+
+
 - (void)see_showTools {
-    self.showAreaHeightConstaint.constant = -88;
-    self.hiddenToolsTime = 10;
+    if (self.showAreaHeightConstaint.constant == 0) {
+        self.showAreaHeightConstaint.constant = -88;
+    }
+    self.hiddenToolsTime = kAutoHiddenToolsTime;
 }
 
 - (void)see_hiddenTools {
-    self.showAreaHeightConstaint.constant = 0;
+    if (self.showAreaHeightConstaint.constant == -88) {
+        self.showAreaHeightConstaint.constant = 0;
+    }
     self.hiddenToolsTime = 0;
 }
 
@@ -247,11 +306,11 @@ extern NSString * const cacheRangesChangeNotification;
     self.currentTimeLabel.text = timeString;
     self.panGestureCurrentTimeLabel.text = timeString;
 }
-//
+
 - (NSString *)see_timeString:(NSInteger)time {
     return [NSString stringWithFormat:@"%02zd:%02zd",time / 60,time % 60];
 }
-//
+
 //#pragma mark getter & setter
 //- (void)setDelegate:(id<SEEPlayerToolsViewDelegate>)delegate {
 //    _delegate = delegate;
