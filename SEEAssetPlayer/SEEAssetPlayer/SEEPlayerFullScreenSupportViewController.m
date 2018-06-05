@@ -8,6 +8,7 @@
 
 #import "SEEPlayerFullScreenSupportViewController.h"
 #import "SEEPlayerView.h"
+#import "UIDevice+InterfaceOrientation.h"
 @interface SEEPlayerFullScreenSupportViewController () <UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 
 @property (nonatomic, strong) SEEPlayerView * player;
@@ -71,6 +72,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"fullScreen"]) {
         if (!self.player.isFullScreen) {
+            [UIDevice switchNewOrientation:UIInterfaceOrientationPortrait];
             [self dismissViewControllerAnimated:YES completion:^{
                 [self.player removeFromSuperview];
                 [self.originalView addSubview:self.player];

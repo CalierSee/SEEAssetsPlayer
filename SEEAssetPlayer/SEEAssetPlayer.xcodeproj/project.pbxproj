@@ -11,6 +11,7 @@
 		080E317A2081957C008905C7 /* SEEResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */; };
 		080E317D2081995A008905C7 /* SEEDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 080E317C2081995A008905C7 /* SEEDownloader.m */; };
 		081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 081F8E8020A29D45003A652E /* SEEDataManager.m */; };
+		0830539B20C6709C00F6967C /* UIDevice+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830539A20C6709B00F6967C /* UIDevice+InterfaceOrientation.m */; };
 		087E8D60208190BA00F67EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D5F208190BA00F67EB5 /* AppDelegate.m */; };
 		087E8D63208190BA00F67EB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D62208190BA00F67EB5 /* ViewController.m */; };
 		087E8D66208190BA00F67EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 087E8D64208190BA00F67EB5 /* Main.storyboard */; };
@@ -62,6 +63,8 @@
 		080E317E20843D91008905C7 /* SEEPlayerMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerMacro.h; sourceTree = "<group>"; };
 		081F8E7F20A29D45003A652E /* SEEDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEDataManager.h; sourceTree = "<group>"; };
 		081F8E8020A29D45003A652E /* SEEDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEDataManager.m; sourceTree = "<group>"; };
+		0830539920C6709B00F6967C /* UIDevice+InterfaceOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+InterfaceOrientation.h"; sourceTree = "<group>"; };
+		0830539A20C6709B00F6967C /* UIDevice+InterfaceOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+InterfaceOrientation.m"; sourceTree = "<group>"; };
 		087E8D5B208190BA00F67EB5 /* SEEAssetPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEEAssetPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		087E8D5E208190BA00F67EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		087E8D5F208190BA00F67EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				08DB468920BFE14E0048526C /* UITableView+HeightCache.m */,
 				08DB469220BFE5A10048526C /* UIViewController+Top.h */,
 				08DB469320BFE5A10048526C /* UIViewController+Top.m */,
+				0830539920C6709B00F6967C /* UIDevice+InterfaceOrientation.h */,
+				0830539A20C6709B00F6967C /* UIDevice+InterfaceOrientation.m */,
 				087E8D5E208190BA00F67EB5 /* AppDelegate.h */,
 				087E8D5F208190BA00F67EB5 /* AppDelegate.m */,
 				08C100FF20AAD6AC009E5F66 /* NSObject+Dealloc.h */,
@@ -443,6 +448,7 @@
 				087E8D63208190BA00F67EB5 /* ViewController.m in Sources */,
 				087E8D6E208190BA00F67EB5 /* main.m in Sources */,
 				087E8D60208190BA00F67EB5 /* AppDelegate.m in Sources */,
+				0830539B20C6709C00F6967C /* UIDevice+InterfaceOrientation.m in Sources */,
 				08A2917B20A1825B004607D1 /* SEEPlayerView.m in Sources */,
 				0803EEE120B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m in Sources */,
 				081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */,

@@ -41,6 +41,8 @@ typedef NS_ENUM(NSUInteger, SEEPlayerViewReturnButtonType) {
 
 @interface SEEPlayerView : UIView
 
+@property (weak, nonatomic,readonly)UIPanGestureRecognizer *panGesture;
+
 + (instancetype)playerView;
 
 - (void)setURL:(NSURL *)url;

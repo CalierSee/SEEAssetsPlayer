@@ -17,6 +17,6 @@ target 'SEEAssetPlayer' do
     # Pods for testing
   end
 
-pod 'MLeaksFinder'
+#pod 'MLeaksFinder'
 
 end

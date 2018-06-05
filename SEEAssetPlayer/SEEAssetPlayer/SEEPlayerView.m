@@ -77,7 +77,9 @@ extern NSString * const exceptFileNameNotification;
 
 @property (nonatomic, assign) CGPoint  panGestureStartPoint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *showAreaHeightConstaint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topToolsTopConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomToolsBottomConstraint;
 
 @property (nonatomic, assign) NSTimeInterval hiddenToolsTime;
 
@@ -142,9 +144,11 @@ extern NSString * const exceptFileNameNotification;
     [self.loadingIndicator startAnimating];
     [self see_initTools];
     [self see_showTools];
+    __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [_player setURL:url];
-        _stopProgressViewUpdate = NO;
+        __strong typeof(weakSelf) self = weakSelf;
+        [self->_player setURL:url];
+        self->_stopProgressViewUpdate = NO;
     });
 }
 
@@ -265,7 +269,7 @@ extern NSString * const exceptFileNameNotification;
 }
 
 - (IBAction)see_showOrHiddenTools {
-    if (self.showAreaHeightConstaint.constant == 0) {
+    if (self.topToolsTopConstraint.constant == -44) {
         [self see_showTools];
     }
     else {
@@ -310,15 +314,17 @@ extern NSString * const exceptFileNameNotification;
 
 
 - (void)see_showTools {
-    if (self.showAreaHeightConstaint.constant == 0) {
-        self.showAreaHeightConstaint.constant = -88;
+    if (self.topToolsTopConstraint.constant == -44) {
+        self.topToolsTopConstraint.constant = 0;
+        self.bottomToolsBottomConstraint.constant = 0;
     }
     self.hiddenToolsTime = kAutoHiddenToolsTime;
 }
 
 - (void)see_hiddenTools {
-    if (self.showAreaHeightConstaint.constant == -88) {
-        self.showAreaHeightConstaint.constant = 0;
+    if (self.topToolsTopConstraint.constant == 0) {
+        self.topToolsTopConstraint.constant = -44;
+        self.bottomToolsBottomConstraint.constant = -44;
     }
     self.hiddenToolsTime = 0;
 }

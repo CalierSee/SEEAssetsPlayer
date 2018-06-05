@@ -36,7 +36,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"下一个" style:UIBarButtonItemStyleDone target:self action:@selector(see_next)];
-    
+    _player.panGesture.enabled = NO;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
