@@ -7,11 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0803EEE120B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0803EEE020B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m */; };
-		080E317A2081957C008905C7 /* SEEResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */; };
-		080E317D2081995A008905C7 /* SEEDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 080E317C2081995A008905C7 /* SEEDownloader.m */; };
-		081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 081F8E8020A29D45003A652E /* SEEDataManager.m */; };
-		0830539B20C6709C00F6967C /* UIDevice+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830539A20C6709B00F6967C /* UIDevice+InterfaceOrientation.m */; };
+		0830552A20C76F3000F6967C /* UIViewController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830551320C76F2D00F6967C /* UIViewController+Top.m */; };
+		0830552B20C76F3000F6967C /* UIDevice+InterfaceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830551620C76F2D00F6967C /* UIDevice+InterfaceOrientation.m */; };
+		0830552C20C76F3000F6967C /* SEEDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830551720C76F2E00F6967C /* SEEDataManager.m */; };
+		0830552D20C76F3000F6967C /* SEEDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830551820C76F2E00F6967C /* SEEDownloader.m */; };
+		0830552E20C76F3000F6967C /* SEEPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830551A20C76F2E00F6967C /* SEEPlayerView.m */; };
+		0830552F20C76F3000F6967C /* SEEResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830551D20C76F2E00F6967C /* SEEResourceLoaderDelegate.m */; };
+		0830553020C76F3000F6967C /* NSObject+Dealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830551E20C76F2E00F6967C /* NSObject+Dealloc.m */; };
+		0830553120C76F3000F6967C /* SEEPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0830551F20C76F2E00F6967C /* SEEPlayerView.xib */; };
+		0830553220C76F3000F6967C /* UITableView+HeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830552120C76F2E00F6967C /* UITableView+HeightCache.m */; };
+		0830553320C76F3000F6967C /* SEEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830552420C76F2F00F6967C /* SEEPlayer.m */; };
+		0830553420C76F3000F6967C /* SEEPlayerFullScreenSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830552520C76F2F00F6967C /* SEEPlayerFullScreenSupportViewController.m */; };
+		0830553520C76F3000F6967C /* SEETableViewCellHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830552620C76F2F00F6967C /* SEETableViewCellHeightCache.m */; };
+		0830553620C76F3000F6967C /* SEEFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830552920C76F2F00F6967C /* SEEFileInfo.m */; };
+		0830553920C789CB00F6967C /* SEEVideoDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0830553820C789CB00F6967C /* SEEVideoDisplayCell.m */; };
 		087E8D60208190BA00F67EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D5F208190BA00F67EB5 /* AppDelegate.m */; };
 		087E8D63208190BA00F67EB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D62208190BA00F67EB5 /* ViewController.m */; };
 		087E8D66208190BA00F67EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 087E8D64208190BA00F67EB5 /* Main.storyboard */; };
@@ -19,17 +28,10 @@
 		087E8D6E208190BA00F67EB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D6D208190BA00F67EB5 /* main.m */; };
 		087E8D78208190BA00F67EB5 /* SEEAssetPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D77208190BA00F67EB5 /* SEEAssetPlayerTests.m */; };
 		087E8D83208190BA00F67EB5 /* SEEAssetPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D82208190BA00F67EB5 /* SEEAssetPlayerUITests.m */; };
-		087E8D922081913B00F67EB5 /* SEEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 087E8D912081913B00F67EB5 /* SEEPlayer.m */; };
-		08A2917B20A1825B004607D1 /* SEEPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917A20A1825B004607D1 /* SEEPlayerView.m */; };
-		08A2917D20A18289004607D1 /* SEEPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A2917C20A18289004607D1 /* SEEPlayerView.xib */; };
-		08A2918020A1A85E004607D1 /* SEEFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A2917F20A1A85E004607D1 /* SEEFileInfo.m */; };
 		08C100FE20AAD582009E5F66 /* SViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C100FD20AAD582009E5F66 /* SViewController.m */; };
-		08C1010120AAD6AC009E5F66 /* NSObject+Dealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C1010020AAD6AC009E5F66 /* NSObject+Dealloc.m */; };
 		08DB468820BFCD3F0048526C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08DB468720BFCD3F0048526C /* Assets.xcassets */; };
-		08DB468D20BFE14F0048526C /* UITableView+HeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DB468920BFE14E0048526C /* UITableView+HeightCache.m */; };
-		08DB468E20BFE14F0048526C /* SEETableViewCellHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DB468A20BFE14E0048526C /* SEETableViewCellHeightCache.m */; };
 		08DB469120BFE1A20048526C /* SEEVideoDisplayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DB469020BFE1A20048526C /* SEEVideoDisplayVC.m */; };
-		08DB469420BFE5A10048526C /* UIViewController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DB469320BFE5A10048526C /* UIViewController+Top.m */; };
+		08DF5C4D20CF9A880046930F /* SEEVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF5C4C20CF9A880046930F /* SEEVideoModel.m */; };
 		3F27925ABB60494F143C3F58 /* libPods-SEEAssetPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 211D087F20FAFC02C2C8D9A1 /* libPods-SEEAssetPlayer.a */; };
 		6EB06BC23E4D43C30A53D0D0 /* libPods-SEEAssetPlayerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 123781A6742E061EAFD483E6 /* libPods-SEEAssetPlayerUITests.a */; };
 		957071894A8F303D111DC1E6 /* libPods-SEEAssetPlayerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AE6F7BDB3A82D82A0BD6CA /* libPods-SEEAssetPlayerTests.a */; };
@@ -54,17 +56,34 @@
 
 /* Begin PBXFileReference section */
 		03AE6F7BDB3A82D82A0BD6CA /* libPods-SEEAssetPlayerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SEEAssetPlayerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0803EEDF20B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerFullScreenSupportViewController.h; sourceTree = "<group>"; };
-		0803EEE020B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerFullScreenSupportViewController.m; sourceTree = "<group>"; };
-		080E31782081957C008905C7 /* SEEResourceLoaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEResourceLoaderDelegate.h; sourceTree = "<group>"; };
-		080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEResourceLoaderDelegate.m; sourceTree = "<group>"; };
-		080E317B2081995A008905C7 /* SEEDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEDownloader.h; sourceTree = "<group>"; };
-		080E317C2081995A008905C7 /* SEEDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEDownloader.m; sourceTree = "<group>"; };
-		080E317E20843D91008905C7 /* SEEPlayerMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerMacro.h; sourceTree = "<group>"; };
-		081F8E7F20A29D45003A652E /* SEEDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEDataManager.h; sourceTree = "<group>"; };
-		081F8E8020A29D45003A652E /* SEEDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEDataManager.m; sourceTree = "<group>"; };
-		0830539920C6709B00F6967C /* UIDevice+InterfaceOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+InterfaceOrientation.h"; sourceTree = "<group>"; };
-		0830539A20C6709B00F6967C /* UIDevice+InterfaceOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+InterfaceOrientation.m"; sourceTree = "<group>"; };
+		0830551020C76F2D00F6967C /* SEEPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEEPlayer.h; sourceTree = "<group>"; };
+		0830551120C76F2D00F6967C /* UIDevice+InterfaceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+InterfaceOrientation.h"; sourceTree = "<group>"; };
+		0830551220C76F2D00F6967C /* UIViewController+Top.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Top.h"; sourceTree = "<group>"; };
+		0830551320C76F2D00F6967C /* UIViewController+Top.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Top.m"; sourceTree = "<group>"; };
+		0830551420C76F2D00F6967C /* SEEDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEEDownloader.h; sourceTree = "<group>"; };
+		0830551520C76F2D00F6967C /* SEEFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEEFileInfo.h; sourceTree = "<group>"; };
+		0830551620C76F2D00F6967C /* UIDevice+InterfaceOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+InterfaceOrientation.m"; sourceTree = "<group>"; };
+		0830551720C76F2E00F6967C /* SEEDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEEDataManager.m; sourceTree = "<group>"; };
+		0830551820C76F2E00F6967C /* SEEDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEEDownloader.m; sourceTree = "<group>"; };
+		0830551920C76F2E00F6967C /* SEEPlayerFullScreenSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEEPlayerFullScreenSupportViewController.h; sourceTree = "<group>"; };
+		0830551A20C76F2E00F6967C /* SEEPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerView.m; sourceTree = "<group>"; };
+		0830551B20C76F2E00F6967C /* UITableView+HeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+HeightCache.h"; sourceTree = "<group>"; };
+		0830551C20C76F2E00F6967C /* SEEPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEEPlayerView.h; sourceTree = "<group>"; };
+		0830551D20C76F2E00F6967C /* SEEResourceLoaderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEEResourceLoaderDelegate.m; sourceTree = "<group>"; };
+		0830551E20C76F2E00F6967C /* NSObject+Dealloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Dealloc.m"; sourceTree = "<group>"; };
+		0830551F20C76F2E00F6967C /* SEEPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SEEPlayerView.xib; sourceTree = "<group>"; };
+		0830552020C76F2E00F6967C /* SEETableViewCellHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEETableViewCellHeightCache.h; sourceTree = "<group>"; };
+		0830552120C76F2E00F6967C /* UITableView+HeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+HeightCache.m"; sourceTree = "<group>"; };
+		0830552220C76F2F00F6967C /* SEEResourceLoaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEEResourceLoaderDelegate.h; sourceTree = "<group>"; };
+		0830552320C76F2F00F6967C /* NSObject+Dealloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Dealloc.h"; sourceTree = "<group>"; };
+		0830552420C76F2F00F6967C /* SEEPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEEPlayer.m; sourceTree = "<group>"; };
+		0830552520C76F2F00F6967C /* SEEPlayerFullScreenSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerFullScreenSupportViewController.m; sourceTree = "<group>"; };
+		0830552620C76F2F00F6967C /* SEETableViewCellHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEETableViewCellHeightCache.m; sourceTree = "<group>"; };
+		0830552720C76F2F00F6967C /* SEEDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEEDataManager.h; sourceTree = "<group>"; };
+		0830552820C76F2F00F6967C /* SEEPlayerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEEPlayerMacro.h; sourceTree = "<group>"; };
+		0830552920C76F2F00F6967C /* SEEFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEEFileInfo.m; sourceTree = "<group>"; };
+		0830553720C789CB00F6967C /* SEEVideoDisplayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEVideoDisplayCell.h; sourceTree = "<group>"; };
+		0830553820C789CB00F6967C /* SEEVideoDisplayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEVideoDisplayCell.m; sourceTree = "<group>"; };
 		087E8D5B208190BA00F67EB5 /* SEEAssetPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEEAssetPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		087E8D5E208190BA00F67EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		087E8D5F208190BA00F67EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -80,26 +99,13 @@
 		087E8D7E208190BA00F67EB5 /* SEEAssetPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SEEAssetPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		087E8D82208190BA00F67EB5 /* SEEAssetPlayerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEAssetPlayerUITests.m; sourceTree = "<group>"; };
 		087E8D84208190BA00F67EB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		087E8D902081913B00F67EB5 /* SEEPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayer.h; sourceTree = "<group>"; };
-		087E8D912081913B00F67EB5 /* SEEPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayer.m; sourceTree = "<group>"; };
-		08A2917920A1825B004607D1 /* SEEPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEPlayerView.h; sourceTree = "<group>"; };
-		08A2917A20A1825B004607D1 /* SEEPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEPlayerView.m; sourceTree = "<group>"; };
-		08A2917C20A18289004607D1 /* SEEPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEEPlayerView.xib; sourceTree = "<group>"; };
-		08A2917E20A1A85E004607D1 /* SEEFileInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEFileInfo.h; sourceTree = "<group>"; };
-		08A2917F20A1A85E004607D1 /* SEEFileInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEFileInfo.m; sourceTree = "<group>"; };
 		08C100FC20AAD582009E5F66 /* SViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SViewController.h; sourceTree = "<group>"; };
 		08C100FD20AAD582009E5F66 /* SViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SViewController.m; sourceTree = "<group>"; };
-		08C100FF20AAD6AC009E5F66 /* NSObject+Dealloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Dealloc.h"; sourceTree = "<group>"; };
-		08C1010020AAD6AC009E5F66 /* NSObject+Dealloc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Dealloc.m"; sourceTree = "<group>"; };
 		08DB468720BFCD3F0048526C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		08DB468920BFE14E0048526C /* UITableView+HeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+HeightCache.m"; sourceTree = "<group>"; };
-		08DB468A20BFE14E0048526C /* SEETableViewCellHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEETableViewCellHeightCache.m; sourceTree = "<group>"; };
-		08DB468B20BFE14E0048526C /* UITableView+HeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+HeightCache.h"; sourceTree = "<group>"; };
-		08DB468C20BFE14F0048526C /* SEETableViewCellHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEETableViewCellHeightCache.h; sourceTree = "<group>"; };
 		08DB468F20BFE1A20048526C /* SEEVideoDisplayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEVideoDisplayVC.h; sourceTree = "<group>"; };
 		08DB469020BFE1A20048526C /* SEEVideoDisplayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEVideoDisplayVC.m; sourceTree = "<group>"; };
-		08DB469220BFE5A10048526C /* UIViewController+Top.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Top.h"; sourceTree = "<group>"; };
-		08DB469320BFE5A10048526C /* UIViewController+Top.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Top.m"; sourceTree = "<group>"; };
+		08DF5C4B20CF9A880046930F /* SEEVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEEVideoModel.h; sourceTree = "<group>"; };
+		08DF5C4C20CF9A880046930F /* SEEVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEEVideoModel.m; sourceTree = "<group>"; };
 		0D33008FA1B59C20D9F027A8 /* Pods-SEEAssetPlayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SEEAssetPlayerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SEEAssetPlayerTests/Pods-SEEAssetPlayerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		123781A6742E061EAFD483E6 /* libPods-SEEAssetPlayerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SEEAssetPlayerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		211D087F20FAFC02C2C8D9A1 /* libPods-SEEAssetPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SEEAssetPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +144,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		083054E820C76ECB00F6967C /* SEEPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				0830552820C76F2F00F6967C /* SEEPlayerMacro.h */,
+				0830552320C76F2F00F6967C /* NSObject+Dealloc.h */,
+				0830551E20C76F2E00F6967C /* NSObject+Dealloc.m */,
+				0830551120C76F2D00F6967C /* UIDevice+InterfaceOrientation.h */,
+				0830551620C76F2D00F6967C /* UIDevice+InterfaceOrientation.m */,
+				0830551B20C76F2E00F6967C /* UITableView+HeightCache.h */,
+				0830552120C76F2E00F6967C /* UITableView+HeightCache.m */,
+				0830551220C76F2D00F6967C /* UIViewController+Top.h */,
+				0830551320C76F2D00F6967C /* UIViewController+Top.m */,
+				0830552020C76F2E00F6967C /* SEETableViewCellHeightCache.h */,
+				0830552620C76F2F00F6967C /* SEETableViewCellHeightCache.m */,
+				0830551C20C76F2E00F6967C /* SEEPlayerView.h */,
+				0830551A20C76F2E00F6967C /* SEEPlayerView.m */,
+				0830551F20C76F2E00F6967C /* SEEPlayerView.xib */,
+				0830551920C76F2E00F6967C /* SEEPlayerFullScreenSupportViewController.h */,
+				0830552520C76F2F00F6967C /* SEEPlayerFullScreenSupportViewController.m */,
+				0830551020C76F2D00F6967C /* SEEPlayer.h */,
+				0830552420C76F2F00F6967C /* SEEPlayer.m */,
+				0830552220C76F2F00F6967C /* SEEResourceLoaderDelegate.h */,
+				0830551D20C76F2E00F6967C /* SEEResourceLoaderDelegate.m */,
+				0830552720C76F2F00F6967C /* SEEDataManager.h */,
+				0830551720C76F2E00F6967C /* SEEDataManager.m */,
+				0830551520C76F2D00F6967C /* SEEFileInfo.h */,
+				0830552920C76F2F00F6967C /* SEEFileInfo.m */,
+				0830551420C76F2D00F6967C /* SEEDownloader.h */,
+				0830551820C76F2E00F6967C /* SEEDownloader.m */,
+			);
+			path = SEEPlayer;
+			sourceTree = "<group>";
+		};
 		087E8D52208190BA00F67EB5 = {
 			isa = PBXGroup;
 			children = (
@@ -163,40 +202,19 @@
 		087E8D5D208190BA00F67EB5 /* SEEAssetPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				08DB468C20BFE14F0048526C /* SEETableViewCellHeightCache.h */,
-				08DB468A20BFE14E0048526C /* SEETableViewCellHeightCache.m */,
-				08DB468B20BFE14E0048526C /* UITableView+HeightCache.h */,
-				08DB468920BFE14E0048526C /* UITableView+HeightCache.m */,
-				08DB469220BFE5A10048526C /* UIViewController+Top.h */,
-				08DB469320BFE5A10048526C /* UIViewController+Top.m */,
-				0830539920C6709B00F6967C /* UIDevice+InterfaceOrientation.h */,
-				0830539A20C6709B00F6967C /* UIDevice+InterfaceOrientation.m */,
+				083054E820C76ECB00F6967C /* SEEPlayer */,
 				087E8D5E208190BA00F67EB5 /* AppDelegate.h */,
 				087E8D5F208190BA00F67EB5 /* AppDelegate.m */,
-				08C100FF20AAD6AC009E5F66 /* NSObject+Dealloc.h */,
-				08C1010020AAD6AC009E5F66 /* NSObject+Dealloc.m */,
 				087E8D61208190BA00F67EB5 /* ViewController.h */,
 				087E8D62208190BA00F67EB5 /* ViewController.m */,
 				08DB468F20BFE1A20048526C /* SEEVideoDisplayVC.h */,
 				08DB469020BFE1A20048526C /* SEEVideoDisplayVC.m */,
+				08DF5C4B20CF9A880046930F /* SEEVideoModel.h */,
+				08DF5C4C20CF9A880046930F /* SEEVideoModel.m */,
+				0830553720C789CB00F6967C /* SEEVideoDisplayCell.h */,
+				0830553820C789CB00F6967C /* SEEVideoDisplayCell.m */,
 				08C100FC20AAD582009E5F66 /* SViewController.h */,
 				08C100FD20AAD582009E5F66 /* SViewController.m */,
-				087E8D902081913B00F67EB5 /* SEEPlayer.h */,
-				087E8D912081913B00F67EB5 /* SEEPlayer.m */,
-				0803EEDF20B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.h */,
-				0803EEE020B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m */,
-				08A2917920A1825B004607D1 /* SEEPlayerView.h */,
-				08A2917A20A1825B004607D1 /* SEEPlayerView.m */,
-				08A2917C20A18289004607D1 /* SEEPlayerView.xib */,
-				080E31782081957C008905C7 /* SEEResourceLoaderDelegate.h */,
-				080E31792081957C008905C7 /* SEEResourceLoaderDelegate.m */,
-				081F8E7F20A29D45003A652E /* SEEDataManager.h */,
-				081F8E8020A29D45003A652E /* SEEDataManager.m */,
-				080E317B2081995A008905C7 /* SEEDownloader.h */,
-				080E317C2081995A008905C7 /* SEEDownloader.m */,
-				08A2917E20A1A85E004607D1 /* SEEFileInfo.h */,
-				08A2917F20A1A85E004607D1 /* SEEFileInfo.m */,
-				080E317E20843D91008905C7 /* SEEPlayerMacro.h */,
 				087E8D64208190BA00F67EB5 /* Main.storyboard */,
 				087E8D69208190BA00F67EB5 /* LaunchScreen.storyboard */,
 				087E8D6C208190BA00F67EB5 /* Info.plist */,
@@ -357,9 +375,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				087E8D6B208190BA00F67EB5 /* LaunchScreen.storyboard in Resources */,
-				08A2917D20A18289004607D1 /* SEEPlayerView.xib in Resources */,
 				08DB468820BFCD3F0048526C /* Assets.xcassets in Resources */,
 				087E8D66208190BA00F67EB5 /* Main.storyboard in Resources */,
+				0830553120C76F3000F6967C /* SEEPlayerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,23 +459,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				087E8D922081913B00F67EB5 /* SEEPlayer.m in Sources */,
-				08DB468D20BFE14F0048526C /* UITableView+HeightCache.m in Sources */,
+				0830552D20C76F3000F6967C /* SEEDownloader.m in Sources */,
+				0830553220C76F3000F6967C /* UITableView+HeightCache.m in Sources */,
+				0830553320C76F3000F6967C /* SEEPlayer.m in Sources */,
+				0830552F20C76F3000F6967C /* SEEResourceLoaderDelegate.m in Sources */,
+				0830553920C789CB00F6967C /* SEEVideoDisplayCell.m in Sources */,
+				08DF5C4D20CF9A880046930F /* SEEVideoModel.m in Sources */,
 				08C100FE20AAD582009E5F66 /* SViewController.m in Sources */,
-				08DB468E20BFE14F0048526C /* SEETableViewCellHeightCache.m in Sources */,
+				0830553520C76F3000F6967C /* SEETableViewCellHeightCache.m in Sources */,
+				0830552B20C76F3000F6967C /* UIDevice+InterfaceOrientation.m in Sources */,
+				0830552E20C76F3000F6967C /* SEEPlayerView.m in Sources */,
 				087E8D63208190BA00F67EB5 /* ViewController.m in Sources */,
+				0830552A20C76F3000F6967C /* UIViewController+Top.m in Sources */,
+				0830553620C76F3000F6967C /* SEEFileInfo.m in Sources */,
 				087E8D6E208190BA00F67EB5 /* main.m in Sources */,
+				0830553420C76F3000F6967C /* SEEPlayerFullScreenSupportViewController.m in Sources */,
+				0830553020C76F3000F6967C /* NSObject+Dealloc.m in Sources */,
+				0830552C20C76F3000F6967C /* SEEDataManager.m in Sources */,
 				087E8D60208190BA00F67EB5 /* AppDelegate.m in Sources */,
-				0830539B20C6709C00F6967C /* UIDevice+InterfaceOrientation.m in Sources */,
-				08A2917B20A1825B004607D1 /* SEEPlayerView.m in Sources */,
-				0803EEE120B7E35D004CC24F /* SEEPlayerFullScreenSupportViewController.m in Sources */,
-				081F8E8120A29D45003A652E /* SEEDataManager.m in Sources */,
-				08C1010120AAD6AC009E5F66 /* NSObject+Dealloc.m in Sources */,
 				08DB469120BFE1A20048526C /* SEEVideoDisplayVC.m in Sources */,
-				08DB469420BFE5A10048526C /* UIViewController+Top.m in Sources */,
-				080E317A2081957C008905C7 /* SEEResourceLoaderDelegate.m in Sources */,
-				080E317D2081995A008905C7 /* SEEDownloader.m in Sources */,
-				08A2918020A1A85E004607D1 /* SEEFileInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,11 +29,6 @@ extern NSString * const exceptFileNameNotification;
 
 @implementation SEEPlayerCacheView
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-}
-
 - (void)drawRect:(CGRect)rect {
     if (_cacheRanges.count == 0) return;
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -135,7 +130,7 @@ extern NSString * const exceptFileNameNotification;
 - (void)layoutSublayersOfLayer:(CALayer *)layer {
     [super layoutSublayersOfLayer:layer];
     _player.playerLayer.bounds = layer.bounds;
-    _player.playerLayer.position = layer.position;
+    _player.playerLayer.position = CGPointMake(layer.bounds.size.width / 2, layer.bounds.size.height / 2);
 }
 
 - (void)setURL:(NSURL *)url {
@@ -155,6 +150,14 @@ extern NSString * const exceptFileNameNotification;
 - (void)setURL:(NSURL *)url title:(NSString *)title {
     [self setURL:url];
     self.titleLabel.text = title;
+}
+
+- (void)pause {
+    [_player pause];
+}
+
+- (void)play {
+    [_player play];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {

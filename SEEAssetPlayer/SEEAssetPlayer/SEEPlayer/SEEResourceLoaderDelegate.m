@@ -28,6 +28,7 @@
         [_dataManager stop];
         _dataManager = nil;
     }
+    [self.loadingRequests removeAllObjects];
     _url = url;
     NSURLComponents * components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
     //替换scheme

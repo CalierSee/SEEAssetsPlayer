@@ -53,6 +53,8 @@ typedef NS_ENUM(NSUInteger, SEEPlayerViewReturnButtonType) {
 
 @property (nonatomic, assign, readonly, getter = isFullScreen) BOOL fullScreen;
 
+- (void)pause;
 
+- (void)play;
 
 @end

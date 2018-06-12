@@ -9,7 +9,6 @@
 #import "SEEPlayer.h"
 #import "SEEResourceLoaderDelegate.h"
 #import "SEEPlayerMacro.h"
-#import "SEEFileManager.h"
 
 @interface SEEPlayer ()
 
@@ -93,7 +92,7 @@
 }
 
 - (void)pause {
-    if (self.status != SEEPlayerStatusPause) {
+    if (self.status != SEEPlayerStatusPause && self.status != SEEPlayerStatusComplete) {
         self.status = SEEPlayerStatusPause;
     }
 }

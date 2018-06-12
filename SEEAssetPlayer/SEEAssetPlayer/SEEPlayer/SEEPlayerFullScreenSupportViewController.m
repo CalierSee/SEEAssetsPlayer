@@ -76,6 +76,7 @@
             [self dismissViewControllerAnimated:YES completion:^{
                 [self.player removeFromSuperview];
                 [self.originalView addSubview:self.player];
+                self.player.frame = self.originalViewFrame;
             }];
         }
     }
