@@ -45,8 +45,14 @@
         self.animationStartFrame = [self.originalView convertRect:self.originalViewFrame toView:[UIApplication sharedApplication].keyWindow];
         [self.view addSubview:player];
         [player addObserver:self forKeyPath:@"fullScreen" options:NSKeyValueObservingOptionNew context:nil];
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(see_test) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     return self;
+}
+
+- (void)see_test {
+    NSLog(@"%d",self.player.isFullScreen);
 }
 
 - (void)viewDidLoad {
@@ -85,6 +91,8 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }
+
+
 
 #pragma mark delegate
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {

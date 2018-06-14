@@ -110,7 +110,6 @@ extern NSString * const exceptFileNameNotification;
     self.returnType = SEEPlayerViewReturnButtonTypeNone;
     _hiddenToolsTime = kAutoHiddenToolsTime;
     _player = [[SEEPlayer alloc]init];
-    [self.layer insertSublayer:_player.playerLayer atIndex:0];
     [_player addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:nil];
     [_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
     [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
@@ -135,6 +134,7 @@ extern NSString * const exceptFileNameNotification;
 
 - (void)setURL:(NSURL *)url {
     _stopProgressViewUpdate = YES;
+    [_player.playerLayer removeFromSuperlayer];
     [_player pause];
     [self.loadingIndicator startAnimating];
     [self see_initTools];
@@ -194,7 +194,13 @@ extern NSString * const exceptFileNameNotification;
         if (_player.duration < kPanGestureScreenWidthTime / 2) {
             self.panGesture.enabled = NO;
         }
+        else {
+            self.panGesture.enabled = YES;
+        }
         self.durationLabel.text = [self see_timeString:_player.duration];
+        if (_player.playerLayer.superlayer == nil) {
+            [self.layer insertSublayer:_player.playerLayer atIndex:0];
+        }
     }
 }
 

@@ -139,9 +139,12 @@ NSString * const cacheRangesChangeNotification = @"cacheRangesChangeNotification
 - (NSInteger)read:(uint8_t *)buffer maxLength:(NSUInteger)len {
     NSInteger readBytes = [_stream read:buffer maxLength:len];
     if (readBytes == -1 || readBytes == 0) {
-        NSLog(@"%@",_stream.streamError);
+//        NSLog(@"%@",_stream.streamError);
+        readBytes = 0;
     }
-    _currentOffset += readBytes;
+    else {
+        _currentOffset += readBytes;
+    }
     return readBytes;
 }
 //读取指定位置数据

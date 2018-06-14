@@ -82,6 +82,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.79711579623287676" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="nameLabel" destination="9Hm-kH-ReE" id="PmU-UC-fr9"/>
+                                    <outlet property="playButton" destination="kX9-QU-rUu" id="sLf-9e-Ylj"/>
                                     <outlet property="playeView" destination="2Rb-Y3-5Sx" id="hYr-Cq-wFV"/>
                                     <outlet property="urlLabel" destination="v51-OI-ktb" id="rQg-ta-Yjg"/>
                                 </connections>

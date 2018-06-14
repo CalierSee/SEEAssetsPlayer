@@ -19,6 +19,7 @@
 
 @property (nonatomic, weak) SEEPlayerView * player;
 
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 @end
 
@@ -33,22 +34,38 @@
 - (void)configureWithModel:(SEEVideoModel *)model {
     self.urlLabel.text = model.url;
     self.nameLabel.text = model.name;
-    self.playing = model.isPlaying;
-}
-
-- (IBAction)playButtonAction:(UIButton *)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(cell:playerWithIndexPath:)]) {
-        self.player = [self.delegate cell:self playerWithIndexPath:self.indexPath];
+    if (model.isPlaying) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(cell:playerWithIndexPath:)]) {
+            self.player = [self.delegate cell:self playerWithIndexPath:self.indexPath];
+        }
+        self.playButton.hidden = YES;
+    }
+    else {
+        self.playButton.hidden = NO;
     }
 }
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    [self.player pause];
-    [self.player removeFromSuperview];
-    self.player = nil;
-    self.playing = NO;
+    [self clearPlayer];
 }
+
+- (void)clearPlayer {
+    if (self.player) {
+        [self.player pause];
+        [self.player removeFromSuperview];
+        self.player = nil;
+        self.playButton.hidden = NO;
+    }
+}
+
+- (IBAction)playButtonAction:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(cell:playerWithIndexPath:)]) {
+        sender.hidden = YES;
+        self.player = [self.delegate cell:self playerWithIndexPath:self.indexPath];
+    }
+}
+
 
 - (void)setPlayer:(SEEPlayerView *)player {
     _player = player;
@@ -56,16 +73,6 @@
         [self.playeView addSubview:self.player];
         self.player.frame = self.playeView.bounds;
         [player play];
-        _playing = YES;
-    }
-}
-
-- (void)setPlaying:(BOOL)playing {
-    _playing = playing;
-    if (playing) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(cell:playerWithIndexPath:)]) {
-            self.player = [self.delegate cell:self playerWithIndexPath:self.indexPath];
-        }
     }
 }
 

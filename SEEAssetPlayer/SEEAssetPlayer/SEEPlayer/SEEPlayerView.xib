@@ -173,6 +173,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="IIO-11-MM0" secondAttribute="trailing" id="CY2-q8-UIY"/>

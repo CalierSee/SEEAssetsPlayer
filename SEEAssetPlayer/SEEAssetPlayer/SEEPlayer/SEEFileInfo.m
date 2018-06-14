@@ -56,7 +56,9 @@ NSString * const exceptFileNameNotification = @"exceptFileNameNotification";
 - (void)setExceptFileName:(NSString *)exceptFileName {
     if ([_exceptFileName isEqualToString:exceptFileName]) return;
     _exceptFileName = exceptFileName;
-    [[NSNotificationCenter defaultCenter]postNotificationName:exceptFileNameNotification object:nil userInfo:@{@"exceptFileName": exceptFileName}];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:exceptFileNameNotification object:nil userInfo:@{@"exceptFileName": exceptFileName}];
+    });
 }
 
 @end

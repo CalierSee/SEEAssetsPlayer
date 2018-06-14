@@ -75,8 +75,6 @@
     [_player pause];
     //0 播放器播放新url之前清除上一次的监听等
     [self see_clearPlayer];
-    //1 播放状态重置
-    self.status = SEEPlayerStatusUnknow;
     //2 重新设置item
     AVPlayerItem * newItem = [AVPlayerItem playerItemWithAsset:[self->_resourceLoaderDelegate assetWithURL:url] automaticallyLoadedAssetKeys:@[@"duration",@"preferredRate",@"preferredVolume",@"preferredTransform"]];
     //3 设置新的item
@@ -229,7 +227,10 @@
  清除对item监听
  */
 - (void)see_clearPlayer {
-    [_player pause];
+    //1 播放状态重置
+    self.status = SEEPlayerStatusUnknow;
+    self.duration = 0;
+    self.currentTime = 0;
     if (_player.currentItem != nil) {
         AVPlayerItem * item = _player.currentItem;
         if (item == nil) return;

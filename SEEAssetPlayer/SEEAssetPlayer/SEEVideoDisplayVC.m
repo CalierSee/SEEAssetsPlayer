@@ -59,12 +59,11 @@
 }
 
 - (SEEPlayerView *)cell:(SEEVideoDisplayCell *)cell playerWithIndexPath:(NSIndexPath *)indexPath {
-    if (!cell.playing) {
+    if (self.currentPlayIndexPath == nil || self.currentPlayIndexPath.row != indexPath.row) {
         [self.player setURL:[NSURL URLWithString:self.datas[indexPath.row].url]];
         if (self.currentPlayIndexPath) {
             self.datas[self.currentPlayIndexPath.row].playing = NO;
-            SEEVideoDisplayCell * cell = [self.tableView cellForRowAtIndexPath:self.currentPlayIndexPath];
-            cell.playing = NO;
+            [(SEEVideoDisplayCell *)[self.tableView cellForRowAtIndexPath:self.currentPlayIndexPath] clearPlayer];
         }
         self.datas[indexPath.row].playing = YES;
         self.currentPlayIndexPath = indexPath;
@@ -86,9 +85,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SEEVideoDisplayCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    [cell clearPlayer];
     cell.delegate = self;
     cell.indexPath = indexPath;
-    [cell configureWithModel:self.datas[indexPath.row]];
+    [(SEEVideoDisplayCell *)cell configureWithModel:self.datas[indexPath.row]];
     return cell;
 }
 
@@ -99,12 +99,15 @@
 }
 
 
+
+
 - (NSArray *)datas {
     if (_datas == nil) {
         
         NSArray * urls = @[
-          @"http://he.yinyuetai.com/uploads/videos/common/88CE01595A940BC83C7AB2C616308D62.mp4?sc=9b0ddcaad115e009&br=3099&vid=2763591&aid=25339&area=KR&vst=0",
+          
           @"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",
+          @"http://he.yinyuetai.com/uploads/videos/common/88CE01595A940BC83C7AB2C616308D62.mp4?sc=9b0ddcaad115e009&br=3099&vid=2763591&aid=25339&area=KR&vst=0",
           @"http://p11s9kqxf.bkt.clouddn.com/buff.mp4",
           @"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",
           @"http://p11s9kqxf.bkt.clouddn.com/child.mp4",

@@ -20,11 +20,11 @@
 
 @property (nonatomic, weak) id <SEEVideoDisplayCellDelegate> delegate;
 
-@property (nonatomic, assign) BOOL playing;
-
 @property (nonatomic, strong) NSIndexPath * indexPath;
 
 
 - (void)configureWithModel:(SEEVideoModel *)model;
+
+- (void)clearPlayer;
 
 @end

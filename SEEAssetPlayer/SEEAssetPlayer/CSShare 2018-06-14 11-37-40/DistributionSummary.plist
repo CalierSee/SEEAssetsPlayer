@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CSShare.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>6CFF510821107E5C54D93AC60F3E3AFF17382927</string>
+				<key>dateExpires</key>
+				<string>2019/4/10</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>36BB695Z56.com.hzszn.CSShare</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>36BB695Z56</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>CSShare.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>11695d14-53fb-435f-9eee-99c163c023bd</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: com.hzszn.CSShare</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>36BB695Z56</string>
+				<key>name</key>
+				<string>Hangzhou Three Bird Network Technology Co., Ltd.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
