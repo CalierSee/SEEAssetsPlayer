@@ -10,7 +10,6 @@
 #import "SEEPlayerView.h"
 #import "SEEPlayer.h"
 #import "UIViewController+Top.h"
-#import "SEEPlayerFullScreenSupportViewController.h"
 #define kAutoHiddenToolsTime 6
 
 #define kPanGestureScreenWidthTime 180
@@ -213,6 +212,9 @@ extern NSString * const exceptFileNameNotification;
     if (sender.selected) {
         UIViewController * topViewController = [UIViewController topViewController];
         SEEPlayerFullScreenSupportViewController * vc = [[SEEPlayerFullScreenSupportViewController alloc]initWithPlayer:self];
+        
+        vc.delegate = self.UIDelegate;
+        
         [topViewController presentViewController:vc animated:YES completion:nil];
     }
 }

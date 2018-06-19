@@ -26,7 +26,12 @@
 
 @end
 
-@implementation SEEPlayerFullScreenSupportViewController
+@implementation SEEPlayerFullScreenSupportViewController {
+    struct {
+        bool supportedInterfaceOrientations;
+        
+    }_responder;
+}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -89,6 +94,9 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    if (_responder.supportedInterfaceOrientations) {
+        return [self.delegate fullScreenSupportedInterfaceOrientations:self];
+    }
     return UIInterfaceOrientationMaskAll;
 }
 
@@ -131,6 +139,11 @@
     }
 }
 
-
+#pragma mark getter & setter
+- (void)setDelegate:(id<SEEPlayerFullScreenSupportViewControllerDelegate>)delegate {
+    _delegate = delegate;
+    if (delegate == nil) return;
+    _responder.supportedInterfaceOrientations = [delegate respondsToSelector:@selector(fullScreenSupportedInterfaceOrientations:)];
+}
 
 @end

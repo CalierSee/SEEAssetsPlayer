@@ -51,7 +51,7 @@
 }
 
 - (void)clearPlayer {
-    if (self.player) {
+    if (self.player && !self.player.isFullScreen) {
         [self.player pause];
         [self.player removeFromSuperview];
         self.player = nil;
@@ -69,7 +69,7 @@
 
 - (void)setPlayer:(SEEPlayerView *)player {
     _player = player;
-    if (player) {
+    if (player && !player.isFullScreen) {
         [self.playeView addSubview:self.player];
         self.player.frame = self.playeView.bounds;
         [player play];

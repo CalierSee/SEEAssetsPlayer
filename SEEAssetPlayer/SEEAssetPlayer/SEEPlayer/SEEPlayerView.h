@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SEEPlayerFullScreenSupportViewController.h"
 typedef NS_ENUM(NSUInteger, SEEPlayerViewReturnButtonType) {
     SEEPlayerViewReturnButtonTypeNone,
     SEEPlayerViewReturnButtonTypeReturn,
@@ -16,21 +16,21 @@ typedef NS_ENUM(NSUInteger, SEEPlayerViewReturnButtonType) {
 
 @class SEEPlayerView;
 
-@protocol SEEPlayerToolsUIDelegate <NSObject>
+@protocol SEEPlayerToolsUIDelegate <SEEPlayerFullScreenSupportViewControllerDelegate>
 
-@required
+@optional
+
 /**
- 播放器关闭
+ 播放器关闭按钮点击事件
  */
 - (void)playerDidClose;
 
-
-@optional
 /**
  全屏小屏切换
  注意，默认实现了切换。如果实现了以下方法则不再提供全屏小屏切换，需要自己实现
  */
 - (void)fullScreen:(SEEPlayerView *)player;
+
 /**
  全屏小屏切换
  注意，默认实现了切换。如果实现了以下方法则不再提供全屏小屏切换，需要自己实现
@@ -44,6 +44,9 @@ typedef NS_ENUM(NSUInteger, SEEPlayerViewReturnButtonType) {
 @property (weak, nonatomic,readonly)UIPanGestureRecognizer *panGesture;
 
 + (instancetype)playerView;
+
+@property (nonatomic, weak) id <SEEPlayerToolsUIDelegate> UIDelegate;
+
 
 - (void)setURL:(NSURL *)url;
 

@@ -11,7 +11,7 @@
 #import "SEEVideoModel.h"
 #import "UITableView+HeightCache.h"
 #import "SEEPlayerView.h"
-@interface SEEVideoDisplayVC () <SEEVideoDisplayCellDelegate>
+@interface SEEVideoDisplayVC () <SEEVideoDisplayCellDelegate,SEEPlayerToolsUIDelegate>
 
 
 @property (nonatomic, strong) NSArray <SEEVideoModel *> * datas;
@@ -37,6 +37,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.player = [SEEPlayerView playerView];
+    self.player.UIDelegate = self;
 }
 
 - (void)viewDidLoad {
@@ -45,6 +46,10 @@
     [UITableView cacheEnabled:YES];
     
     self.tableView.separatorInset = UIEdgeInsetsMake(10,10,10,10);
+    
+    [self.player addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -56,6 +61,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"frame"]) {
+        NSLog(@"==========%@",self.player.superview);
+    }
 }
 
 - (SEEPlayerView *)cell:(SEEVideoDisplayCell *)cell playerWithIndexPath:(NSIndexPath *)indexPath {
@@ -98,8 +109,11 @@
     }];
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
 
-
+#pragma mark getter & setter
 
 - (NSArray *)datas {
     if (_datas == nil) {
